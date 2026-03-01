@@ -89,6 +89,14 @@ transition:all .3s}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
 .gallery img{width:100%;height:70px;object-fit:cover;border-radius:6px}
 
+/* MICHELIN BADGE */
+.michelin-badge{position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700;display:flex;align-items:center;gap:4px}
+.michelin-3star{background:#1a1a1a;color:#fff}
+.michelin-2star{background:#333;color:#fff}
+.michelin-1star{background:#555;color:#fff}
+.michelin-bib{background:#b8860b;color:#fff}
+.michelin-selected{background:#888;color:#fff}
+
 /* EMPTY */
 .empty{text-align:center;padding:60px 20px;color:var(--text3);display:none}
 .empty.show{display:block}
@@ -112,6 +120,7 @@ transition:all .3s}
 <select class="cuisine-select" id="locationFilter">
 <option value="all">All Locations</option>
 <option value="bay-area">Bay Area</option>
+<option value="napa">Napa</option>
 <option value="new-york">New York</option>
 <option value="shanghai">Shanghai</option>
 <option value="los-angeles">Los Angeles</option>
@@ -121,6 +130,7 @@ transition:all .3s}
 <option value="american">American</option>
 <option value="asian-fusion">Asian Fusion</option>
 <option value="chinese">Chinese</option>
+<option value="french">French</option>
 <option value="german">German</option>
 <option value="italian">Italian</option>
 <option value="japanese">Japanese</option>
@@ -135,7 +145,7 @@ transition:all .3s}
 <option value="brunch">Brunch</option>
 </select>
 </div>
-<div class="stats"><span id="sTotal">16</span> total · <span id="sTried">0</span> tried · <span id="sTogo">15</span> to go</div>
+<div class="stats"><span id="sTotal">21</span> total · <span id="sTried">0</span> tried · <span id="sTogo">15</span> to go</div>
 </div>
 
 <div class="grid" id="grid">
@@ -629,6 +639,177 @@ transition:all .3s}
 </div>
 <div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations required. Tasting menu available. Wed-Sun dinner only.</div></div>
 <div class="gallery"><img src="images/sorrel-2.jpg" alt="" loading="lazy"><img src="images/sorrel-3.jpg" alt="" loading="lazy"><img src="images/sorrel-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
+
+<!-- 17. The French Laundry -->
+<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="french">
+<div class="card-img">
+<img src="images/the-french-laundry-1.jpg" alt="The French Laundry" loading="lazy">
+<span class="michelin-badge michelin-3star">★★★</span>
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.8</span><span class="count">2,100 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">The French Laundry</div><div class="card-tags"><span class="tag">Yountville</span><span class="tag">French</span><span class="tag">Californian</span></div></div>
+<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">6640 Washington St, Yountville</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(707) 944-2380</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Anniversary, Celebration</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Chef's Tasting Menu</span>
+<span class="dish">Oysters and Pearls</span>
+<span class="dish">Macaroni and Cheese</span>
+<span class="dish">Coffee and Doughnuts</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Thomas K.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Life-changing experience. Every course is perfection. Worth every penny and the months-long wait.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Michelin Guide</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Exceptional cuisine, worth a special journey. Thomas Keller's iconic restaurant sets the standard.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Sarah M.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The service is impeccable. The garden vegetables are harvested daily. Pure culinary artistry.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations open 2 months in advance. Book at 10am PT exactly. $350+ per person.</div></div>
+<div class="gallery"><img src="images/the-french-laundry-2.jpg" alt="" loading="lazy"><img src="images/the-french-laundry-3.jpg" alt="" loading="lazy"><img src="images/the-french-laundry-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
+
+<!-- 18. Kenzo -->
+<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="japanese">
+<div class="card-img">
+<img src="images/kenzo-1.jpg" alt="Kenzo" loading="lazy">
+<span class="michelin-badge michelin-1star">★</span>
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.6</span><span class="count">380 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Kenzo</div><div class="card-tags"><span class="tag">Napa</span><span class="tag">Japanese</span><span class="tag">Kaiseki</span></div></div>
+<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">1339 Pearl St, Napa</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(707) 294-2049</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Omakase</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-4 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Kaiseki Menu</span>
+<span class="dish">Sashimi</span>
+<span class="dish">Wagyu</span>
+<span class="dish">Uni</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">David L.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Authentic Japanese kaiseki in Napa. Ingredients flown daily from Japan. Exceptional.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Michelle Guide</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">High quality cooking. Traditional techniques meet Napa Valley ingredients.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations required. Limited seating. Counter seating available.</div></div>
+<div class="gallery"><img src="images/kenzo-2.jpg" alt="" loading="lazy"><img src="images/kenzo-3.jpg" alt="" loading="lazy"><img src="images/kenzo-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
+
+<!-- 19. Auberge du Soleil -->
+<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="french">
+<div class="card-img">
+<img src="images/auberge-du-soleil-1.jpg" alt="Auberge du Soleil" loading="lazy">
+<span class="michelin-badge michelin-1star">★</span>
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.5</span><span class="count">850 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Auberge du Soleil</div><div class="card-tags"><span class="tag">Rutherford</span><span class="tag">French</span><span class="tag">View</span></div></div>
+<div class="card-right"><div class="price">$$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">180 Rutherford Hill Rd, Rutherford</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(800) 348-5406</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Anniversary</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Chef's Tasting Menu</span>
+<span class="dish">Mediterranean Octopus</span>
+<span class="dish">Lamb</span>
+<span class="dish">Chocolate Soufflé</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Jennifer K.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Stunning views of Napa Valley. Held Michelin star for 18 years. Unforgettable.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Robert M.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The terrace dining is magical at sunset. Mediterranean flavors shine.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Request terrace seating for views. Valet parking.</div></div>
+<div class="gallery"><img src="images/auberge-du-soleil-2.jpg" alt="" loading="lazy"><img src="images/auberge-du-soleil-3.jpg" alt="" loading="lazy"><img src="images/auberge-du-soleil-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
+
+<!-- 20. Auro -->
+<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="american">
+<div class="card-img">
+<img src="images/auro-1.jpg" alt="Auro" loading="lazy">
+<span class="michelin-badge michelin-1star">★</span>
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.4</span><span class="count">420 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Auro</div><div class="card-tags"><span class="tag">Calistoga</span><span class="tag">American</span><span class="tag">Contemporary</span></div></div>
+<div class="card-right"><div class="price">$$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">400 Silverado Trail N, Calistoga</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(707) 709-2160</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Wine Tasting</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Japanese Shima Aji</span>
+<span class="dish">Black Trumpet Mushroom Tetela</span>
+<span class="dish">Valencia Orange Sherbet</span>
+<span class="dish">Cinnamon Churros</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Lisa T.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Chef Rogelio Garcia is brilliant. James Beard finalist. Seven courses of perfection.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Michael R.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Wine pairings are exceptional. Over 475 labels. Monthly winery series dinners.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations required. Seven-course tasting menu. Wine pairings available.</div></div>
+<div class="gallery"><img src="images/auro-2.jpg" alt="" loading="lazy"><img src="images/auro-3.jpg" alt="" loading="lazy"><img src="images/auro-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
+
+<!-- 21. PRESS -->
+<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="american">
+<div class="card-img">
+<img src="images/press-1.jpg" alt="PRESS" loading="lazy">
+<span class="michelin-badge michelin-1star">★</span>
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.6</span><span class="count">680 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">PRESS</div><div class="card-tags"><span class="tag">St. Helena</span><span class="tag">American</span><span class="tag">Wine</span></div></div>
+<div class="card-right"><div class="price">$$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">587 St Helena Hwy, St Helena</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(707) 967-0550</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Wine Dinner</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Dry-Aged Ribeye</span>
+<span class="dish">Local Vegetables</span>
+<span class="dish">House-made Pasta</span>
+<span class="dish">Seasonal Dessert</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Wine Lover</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Largest Napa Valley wine collection in the world. 10,000 bottles. Grand Award winner.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">James P.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Multiple sommeliers on staff. Perfect pairings every time. Meat and pasta dishes shine.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Wine cellar tours available. Request sommelier table.</div></div>
+<div class="gallery"><img src="images/press-2.jpg" alt="" loading="lazy"><img src="images/press-3.jpg" alt="" loading="lazy"><img src="images/press-4.jpg" alt="" loading="lazy"></div>
 </div></div>
 </div>
 
