@@ -191,7 +191,7 @@
             <p class="header-subtitle">E's personal dining collection</p>
             <div class="stats-bar">
                 <div class="stat-item">
-                    <span class="stat-value" id="total-count">10</span>
+                    <span class="stat-value" id="total-count">11</span>
                     <span class="stat-label">Total</span>
                 </div>
                 <div class="stat-item">
@@ -199,7 +199,7 @@
                     <span class="stat-label">Tried</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-value" id="togo-count">10</span>
+                    <span class="stat-value" id="togo-count">11</span>
                     <span class="stat-label">To Go</span>
                 </div>
             </div>
@@ -239,6 +239,7 @@
                     <option value="chinese">Chinese</option>
                     <option value="italian">Italian</option>
                     <option value="peruvian">Peruvian</option>
+                    <option value="german">German</option>
                     <option value="japanese">Japanese</option>
                     <option value="sichuan">Sichuan</option>
                     <option value="yunnan">Yunnan</option>
@@ -1136,7 +1137,91 @@
             </div>
         </div>
 
-        <div class="empty-state hidden" id="empty-state">
+
+
+            <!-- Suppenkuche -->
+            <div class="restaurant-card" 
+                 data-status="togo" 
+                 data-region="bay-area" 
+                 data-cuisine="german"
+                 data-occasion="casual">
+                <div class="card-header">
+                    <img src="images/suppenkuche-1.jpg" alt="Suppenkuche">
+                    <span class="status-badge status-togo">To Go</span>
+                    <div class="rating-box">
+                        <span class="rating-score">4.5</span>
+                        <span class="rating-count">1944 reviews</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3 class="restaurant-name">Suppenküche</h3>
+                        <span class="price-tag">$$</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-tag">San Francisco</span>
+                        <span class="meta-tag">German</span>
+                        <span class="meta-tag">Casual</span>
+                    </div>
+                    <div class="info-section">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">📍 Address</span>
+                                <span class="info-value">525 Laguna St, SF (Hayes Valley)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">📞 Phone</span>
+                                <span class="info-value">(415) 252-9289</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">🎯 Occasion</span>
+                                <span class="info-value">Casual, Friends, Brunch</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">👥 Capacity</span>
+                                <span class="info-value">2-8 people</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dishes-section">
+                        <div class="dishes-title">Must Try</div>
+                        <div class="dishes-list">
+                            <span class="dish-tag">Wiener Schnitzel</span>
+                            <span class="dish-tag">Brotwurst</span>
+                            <span class="dish-tag">Schweinebraten</span>
+                            <span class="dish-tag">Pretzel</span>
+                            <span class="dish-tag">German Beer</span>
+                        </div>
+                    </div>
+                    <div class="reviews-section">
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">The Infatuation</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">The best German food in town. Less "how fast can you chug a beer" than Leopold's.</div>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">Yelp</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">Traditional Bavarian Wirthaus dining. Known for warm atmosphere, specialty beer selection and Sunday brunch. Established 1993.</div>
+                        </div>
+                    </div>
+                    <div class="booking-section">
+                        <div class="booking-label">Booking</div>
+                        <div class="booking-info">Walk-in or call ahead. Oktoberfest specials Sept 20 - Oct 5. Famous for 1-liter beer mugs.</div>
+                    </div>
+                    <div class="photo-gallery">
+                        <img src="images/suppenkuche-1.jpg" alt="German 1">
+                        <img src="images/suppenkuche-2.jpg" alt="German 2">
+                        <img src="images/suppenkuche-3.jpg" alt="German 3">
+                    </div>
+                </div>
+            </div>
+
+                <div class="empty-state hidden" id="empty-state">
             <div class="empty-state-icon">🔍</div>
             <p>No restaurants match your filters</p>
         </div>
