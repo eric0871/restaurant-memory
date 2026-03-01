@@ -1,1532 +1,606 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Memory | E's Collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #fafafa;
-            --bg-secondary: #f5f5f5;
-            --bg-card: #ffffff;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --text-muted: #999999;
-            --border: #e8e8e8;
-            --accent: #2d3436;
-            --accent-light: #636e72;
-            --success: #00b894;
-            --shadow: 0 2px 8px rgba(0,0,0,0.04);
-            --shadow-hover: 0 8px 24px rgba(0,0,0,0.08);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurants</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#fafafa;--card:#fff;--text:#1a1a1a;--text2:#666;--text3:#999;
+--border:#e8e8e8;--accent:#00e5ff;--accent-dim:rgba(0,229,255,0.15);
+--shadow:0 1px 4px rgba(0,0,0,0.04);--shadow-hover:0 8px 24px rgba(0,0,0,0.08);
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+/* HEADER */
+.hero{text-align:center;padding:60px 20px 40px}
+.hero h1{
+font-family:'Orbitron',sans-serif;font-size:clamp(36px,6vw,56px);font-weight:700;
+letter-spacing:6px;text-transform:uppercase;color:var(--text);
+text-shadow:0 0 20px rgba(0,229,255,0.5),0 0 60px rgba(0,229,255,0.15);
+}
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            font-size: 14px;
-        }
+/* TOOLBAR */
+.toolbar{max-width:1320px;margin:0 auto;padding:0 40px 32px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{padding:7px 18px;border:1px solid var(--border);border-radius:99px;background:var(--card);font-size:12px;
+font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;color:var(--text2)}
+.pill:hover{border-color:var(--accent)}
+.pill.active{background:var(--text);color:#fff;border-color:var(--text)}
+select.cuisine-select{padding:7px 14px;border:1px solid var(--border);border-radius:99px;background:var(--card);
+font-size:12px;font-family:'Inter',sans-serif;color:var(--text2);cursor:pointer;outline:none}
+select.cuisine-select:focus{border-color:var(--accent)}
+.stats{font-size:12px;color:var(--text3);letter-spacing:.5px}
+.stats span{font-weight:600;color:var(--text)}
 
-        .header {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
-            padding: 40px 60px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+/* GRID */
+.grid{max-width:1320px;margin:0 auto;padding:0 40px 60px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 
-        .header-content { max-width: 1400px; margin: 0 auto; }
+/* CARD */
+.card{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border);
+box-shadow:var(--shadow);transition:box-shadow .3s,transform .3s;cursor:pointer}
+.card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.card-img{height:200px;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{position:absolute;top:12px;right:12px;padding:4px 12px;border-radius:99px;font-size:10px;
+font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.badge-togo{background:var(--card);color:var(--text2);border:1px solid var(--border)}
+.badge-tried{background:#00b894;color:#fff}
+.rating-pill{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+padding:5px 12px;border-radius:8px;display:flex;align-items:center;gap:6px}
+.rating-pill .score{font-size:16px;font-weight:600}
+.rating-pill .count{font-size:10px;color:var(--text3)}
 
-        .header h1 {
-            font-size: 28px;
-            font-weight: 500;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-        }
+/* CARD SUMMARY */
+.card-summary{padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start}
+.card-name{font-size:17px;font-weight:500;letter-spacing:-.2px;margin-bottom:6px}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;color:var(--text2);background:var(--bg);padding:3px 8px;border-radius:4px}
+.card-right{text-align:right;flex-shrink:0;margin-left:12px}
+.price{font-size:13px;color:var(--text3);font-weight:500}
+.expand-icon{display:inline-block;margin-top:8px;width:22px;height:22px;border-radius:50%;
+border:1px solid var(--border);text-align:center;line-height:20px;font-size:14px;color:var(--text3);
+transition:all .3s}
+.card.open .expand-icon{transform:rotate(45deg);color:var(--accent);border-color:var(--accent)}
 
-        .header-subtitle { color: var(--text-secondary); font-weight: 400; }
+/* EXPANDABLE DETAIL */
+.card-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.card.open .card-detail{max-height:1200px}
+.detail-inner{padding:0 20px 20px;border-top:1px solid var(--border)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.info-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+.info-val{font-size:13px}
+.dishes{margin:14px 0;padding:14px;background:var(--bg);border-radius:10px}
+.dishes-title{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.dishes-list{display:flex;flex-wrap:wrap;gap:6px}
+.dish{font-size:11px;padding:5px 10px;background:var(--card);border:1px solid var(--border);border-radius:5px}
+.reviews{margin:14px 0}
+.review{padding:10px 0;border-bottom:1px solid var(--border)}
+.review:last-child{border-bottom:none}
+.rev-head{display:flex;justify-content:space-between;margin-bottom:4px}
+.rev-name{font-size:12px;font-weight:500}
+.rev-stars{font-size:11px;color:#f39c12}
+.rev-text{font-size:12px;color:var(--text2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.booking{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.booking-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.booking-val{font-size:13px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
+.gallery img{width:100%;height:70px;object-fit:cover;border-radius:6px}
 
-        .stats-bar {
-            display: flex;
-            gap: 40px;
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-        }
+/* EMPTY */
+.empty{text-align:center;padding:60px 20px;color:var(--text3);display:none}
+.empty.show{display:block}
 
-        .stat-item { display: flex; flex-direction: column; gap: 4px; }
-        .stat-value { font-size: 32px; font-weight: 300; color: var(--accent); }
-        .stat-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-
-        .filters-container { background: var(--bg-secondary); padding: 20px 60px; border-bottom: 1px solid var(--border); }
-        .filters { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
-        .filter-group { display: flex; flex-direction: column; gap: 6px; }
-        .filter-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-
-        select, .filter-btn {
-            padding: 10px 16px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--bg-card);
-            font-size: 13px;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s;
-            min-width: 140px;
-        }
-
-        select:hover, .filter-btn:hover { border-color: var(--accent-light); }
-        select:focus { outline: none; border-color: var(--accent); }
-        .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
-        .filter-divider { width: 1px; height: 40px; background: var(--border); margin: 0 8px; }
-
-        .main { max-width: 1400px; margin: 0 auto; padding: 40px 60px; }
-        .section-title { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-        .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-        .restaurants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 24px; }
-
-        .restaurant-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border);
-        }
-
-        .restaurant-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
-
-        .card-header { position: relative; height: 200px; overflow: hidden; }
-        .card-header img { width: 100%; height: 100%; object-fit: cover; }
-
-        .status-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-tried { background: var(--success); color: white; }
-        .status-togo { background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border); }
-
-        .rating-box {
-            position: absolute;
-            bottom: 16px;
-            left: 16px;
-            background: rgba(255,255,255,0.95);
-            padding: 8px 14px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            backdrop-filter: blur(10px);
-        }
-
-        .rating-score { font-size: 20px; font-weight: 600; color: var(--accent); }
-        .rating-count { font-size: 11px; color: var(--text-muted); }
-        .card-body { padding: 24px; }
-
-        .card-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
-        .restaurant-name { font-size: 20px; font-weight: 500; letter-spacing: -0.3px; }
-        .price-tag { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-
-        .meta-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-        .meta-tag { font-size: 12px; color: var(--text-secondary); background: var(--bg-secondary); padding: 4px 10px; border-radius: 6px; }
-
-        .info-section { margin-bottom: 16px; }
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .info-item { display: flex; flex-direction: column; gap: 2px; }
-        .info-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .info-value { font-size: 13px; color: var(--text-primary); }
-
-        .dishes-section { margin: 20px 0; padding: 16px; background: var(--bg-secondary); border-radius: 12px; }
-        .dishes-title { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-        .dishes-list { display: flex; flex-wrap: wrap; gap: 8px; }
-        .dish-tag { font-size: 12px; padding: 6px 12px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border); }
-
-        .reviews-section { margin-top: 16px; }
-        .review { padding: 12px 0; border-bottom: 1px solid var(--border); }
-        .review:last-child { border-bottom: none; }
-        .review-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
-        .reviewer { font-size: 12px; font-weight: 500; }
-        .review-rating { font-size: 11px; color: #f39c12; }
-        .review-text { font-size: 12px; color: var(--text-secondary); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-
-        .booking-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
-        .booking-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-        .booking-info { font-size: 13px; color: var(--text-primary); }
-
-        .photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
-        .photo-gallery img { width: 100%; height: 80px; object-fit: cover; border-radius: 8px; }
-
-        .empty-state { text-align: center; padding: 80px 40px; color: var(--text-muted); }
-        .empty-state-icon { font-size: 48px; margin-bottom: 16px; }
-
-        .hidden { display: none !important; }
-
-        @media (max-width: 768px) {
-            .header, .filters-container, .main { padding-left: 20px; padding-right: 20px; }
-            .filters { flex-direction: column; align-items: stretch; }
-            .filter-divider { display: none; }
-            .restaurants-grid { grid-template-columns: 1fr; }
-            .stats-bar { gap: 24px; }
-            .stat-value { font-size: 24px; }
-        }
-    </style>
+/* RESPONSIVE */
+@media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr);padding:0 24px 40px}}
+@media(max-width:640px){.grid{grid-template-columns:1fr;padding:0 16px 32px}
+.toolbar{padding:0 16px 24px}.hero{padding:40px 16px 28px}.hero h1{letter-spacing:3px}}
+.hidden{display:none!important}
+</style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <h1>Restaurant Memory</h1>
-            <p class="header-subtitle">E's personal dining collection</p>
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <span class="stat-value" id="total-count">14</span>
-                    <span class="stat-label">Total</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value" id="tried-count">0</span>
-                    <span class="stat-label">Tried</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value" id="togo-count">14</span>
-                    <span class="stat-label">To Go</span>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <div class="filters-container">
-        <div class="filters">
-            <div class="filter-group">
-                <span class="filter-label">Status</span>
-                <div style="display: flex; gap: 8px;">
-                    <button class="filter-btn active" data-filter="all" onclick="filterRestaurants('status', 'all')">All</button>
-                    <button class="filter-btn" data-filter="tried" onclick="filterRestaurants('status', 'tried')">Tried</button>
-                    <button class="filter-btn" data-filter="togo" onclick="filterRestaurants('status', 'togo')">To Go</button>
-                </div>
-            </div>
+<div class="hero"><h1>Restaurants</h1></div>
 
-            <div class="filter-divider"></div>
+<div class="toolbar">
+<div class="filters">
+<button class="pill active" data-status="all">All</button>
+<button class="pill" data-status="togo">To Go</button>
+<button class="pill" data-status="tried">Tried</button>
+<select class="cuisine-select" id="cuisineFilter">
+<option value="all">All Cuisines</option>
+<option value="american">American</option>
+<option value="asian-fusion">Asian Fusion</option>
+<option value="chinese">Chinese</option>
+<option value="german">German</option>
+<option value="italian">Italian</option>
+<option value="japanese">Japanese</option>
+<option value="jiangsu">Jiangsu</option>
+<option value="peruvian">Peruvian</option>
+<option value="sichuan">Sichuan</option>
+<option value="yunnan">Yunnan</option>
+</select>
+</div>
+<div class="stats"><span id="sTotal">14</span> total · <span id="sTried">0</span> tried · <span id="sTogo">14</span> to go</div>
+</div>
 
-            <div class="filter-group">
-                <span class="filter-label">Region</span>
-                <select id="region-filter" onchange="filterRestaurants('region', this.value)">
-                    <option value="all">All Regions</option>
-                    <option value="bay-area">Bay Area</option>
-                    <option value="new-york">New York</option>
-                    <option value="shanghai">Shanghai</option>
-                    <option value="los-angeles">Los Angeles</option>
-                </select>
-            </div>
+<div class="grid" id="grid">
 
-            <div class="filter-group">
-                <span class="filter-label">Cuisine</span>
-                <select id="cuisine-filter" onchange="filterRestaurants('cuisine', this.value)">
-                    <option value="all">All Cuisines</option>
-                    <option value="american">American</option>
-                    <option value="asian-fusion">Asian Fusion</option>
-                    <option value="chinese">Chinese</option>
-                    <option value="italian">Italian</option>
-                    <option value="peruvian">Peruvian</option>
-                    <option value="german">German</option>
-                    <option value="japanese">Japanese</option>
-                    <option value="sichuan">Sichuan</option>
-                    <option value="yunnan">Yunnan</option>
-                    <option value="jiangsu">Jiangsu</option>
-                </select>
-            </div>
+<!-- 1. Sweet Maple -->
+<div class="card" data-status="togo" data-cuisine="asian-fusion">
+<div class="card-img">
+<img src="images/sweet-maple-1.jpg" alt="Sweet Maple" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.4</span><span class="count">940 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Sweet Maple</div><div class="card-tags"><span class="tag">Palo Alto</span><span class="tag">Asian Fusion</span><span class="tag">Brunch</span></div></div>
+<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">150 University Ave, Palo Alto</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 521-0764</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Brunch, Date, Friends</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Millionaire's Bacon</span><span class="dish">Chicken Croffle</span><span class="dish">Ube Latte</span><span class="dish">Matcha Moffle</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Riyakan Kapoor</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Ultimate brunch spot! Ube Latte is the star. French Toast is the best I've ever had.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Shubham Kamdi</span><span class="rev-stars">★★★★☆</span></div><div class="rev-text">High-energy modern brunch. Millionaire's Bacon is the main draw but pricey. Two people easily $100.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Hua Mao</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Super popular in downtown Palo Alto. American + Asian fusion. Huge portions, cozy decor.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in only. Arrive before 8:30am on weekends or wait 1-2 hours.</div></div>
+<div class="gallery"><img src="images/sweet-maple-2.jpg" alt="" loading="lazy"><img src="images/sweet-maple-3.jpg" alt="" loading="lazy"><img src="images/sweet-maple-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-            <div class="filter-group">
-                <span class="filter-label">Occasion</span>
-                <select id="occasion-filter" onchange="filterRestaurants('occasion', this.value)">
-                    <option value="all">All Occasions</option>
-                    <option value="casual">Casual</option>
-                    <option value="date">Date Night</option>
-                    <option value="business">Business</option>
-                    <option value="special">Special Occasion</option>
-                    <option value="brunch">Brunch</option>
-                </select>
-            </div>
-        </div>
-    </div>
+<!-- 2. Sushi Shin -->
+<div class="card" data-status="togo" data-cuisine="japanese">
+<div class="card-img">
+<img src="images/sushi-shin-1.jpg" alt="Sushi Shin" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.4</span><span class="count">219 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Sushi Shin</div><div class="card-tags"><span class="tag">Redwood City</span><span class="tag">Omakase</span><span class="tag">Michelin</span></div></div>
+<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">312 Arguello St, Redwood City</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 921-8809</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Celebration</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-4 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Omakase Menu</span><span class="dish">Otoro</span><span class="dish">Uni</span><span class="dish">Lobster Spring Roll</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Lin Sun-Hoffman</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Standout sushi experience! Intimate setting, elegant atmosphere. Chef Jason Zhan is masterful.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">David Famero</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Unforgettable omakase! Impeccable cleanliness, quiet precision. Michelin star quality.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Michael Lyons</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Spectacular meal! Lobster spring roll and greeneye fish. Otoro and uni were amazing.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations highly recommended. Book via website or call. Intimate seating, limited availability.</div></div>
+<div class="gallery"><img src="images/sushi-shin-2.jpg" alt="" loading="lazy"><img src="images/sushi-shin-3.jpg" alt="" loading="lazy"><img src="images/sushi-shin-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-    <main class="main">
-        <div class="section-title" id="list-title">All Restaurants</div>
-        
-        <div class="restaurants-grid" id="restaurants-container">
-            <!-- Sweet Maple -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="asian-fusion"
-                 data-occasion="brunch">
-                <div class="card-header">
-                    <img src="images/sweet-maple-1.jpg" alt="Sweet Maple">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.4</span>
-                        <span class="rating-count">940 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Sweet Maple</h3>
-                        <span class="price-tag">$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">Palo Alto</span>
-                        <span class="meta-tag">Asian Fusion</span>
-                        <span class="meta-tag">Brunch</span>
-                    </div>
+<!-- 3. Ping's Bistro -->
+<div class="card" data-status="togo" data-cuisine="yunnan">
+<div class="card-img">
+<img src="images/pings-bistro-1.jpg" alt="Ping's Bistro" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.4</span><span class="count">194 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Ping's Bistro 留湘</div><div class="card-tags"><span class="tag">Cupertino</span><span class="tag">Yunnan</span><span class="tag">Dai Cuisine</span></div></div>
+<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">10700 S De Anza Blvd, Cupertino</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(408) 564-5134</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Date, Family, Friends</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Dai Style Pork Ribs</span><span class="dish">Grilled Fish with Lemongrass</span><span class="dish">Boletus Fried Rice</span><span class="dish">Wild Mushrooms with Pork</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">JP Figure</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Completely blown away by vibrant flavors! Authentic Yunnan and Dai-style cuisine.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Chelsea</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Every dish is CRAZY good! Osmanthus Honey Milk Jelly is the best dessert.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Kevin Kruemp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Excellent restaurant! Food is very authentic and atmosphere is bright and inviting.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call ahead. Arrive at 5pm opening or expect 1+ hour wait. 18% service charge.</div></div>
+<div class="gallery"><img src="images/pings-bistro-2.jpg" alt="" loading="lazy"><img src="images/pings-bistro-3.jpg" alt="" loading="lazy"><img src="images/pings-bistro-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">150 University Ave, Palo Alto</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(650) 521-0764</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Brunch, Date, Friends</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-6 people</span>
-                            </div>
-                        </div>
-                    </div>
+<!-- 4. JiangNan Delicacy -->
+<div class="card" data-status="togo" data-cuisine="jiangsu">
+<div class="card-img">
+<img src="images/jiangnan-1.jpg" alt="JiangNan Delicacy" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.1</span><span class="count">84 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">JiangNan Delicacy 江南雅厨</div><div class="card-tags"><span class="tag">Milpitas</span><span class="tag">Jiangsu</span><span class="tag">Suzhou</span></div></div>
+<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">1750 N Milpitas Blvd, Milpitas</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(669) 263-6115</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Date, Family, Business</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Sweet &amp; Sour Fish</span><span class="dish">Sticky Rice Cake</span><span class="dish">Braised River Eel</span><span class="dish">Sweet Braised Lotus Roots</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Mia Mi</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Viral on Red Note! Classy, delicate decoration. Artists playing traditional music.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Colleen Bei</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Wonderful dining experience! True taste of Suzhou cuisine!</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">H. J.</span><span class="rev-stars">★★★☆☆</span></div><div class="rev-text">Nicely decorated, no wait. Food noticeably too sweet for our taste.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call. Reservations recommended weekends. Live traditional music select evenings.</div></div>
+<div class="gallery"><img src="images/jiangnan-2.jpg" alt="" loading="lazy"><img src="images/jiangnan-3.jpg" alt="" loading="lazy"><img src="images/jiangnan-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Millionaire's Bacon</span>
-                            <span class="dish-tag">Chicken Croffle</span>
-                            <span class="dish-tag">Ube Latte</span>
-                            <span class="dish-tag">Matcha Moffle</span>
-                        </div>
-                    </div>
+<!-- 5. Tai Er -->
+<div class="card" data-status="togo" data-cuisine="sichuan">
+<div class="card-img">
+<img src="images/tai-er-1.jpg" alt="Tai Er" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.1</span><span class="count">140 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Tai Er 太二酸菜鱼</div><div class="card-tags"><span class="tag">San Mateo</span><span class="tag">Sichuan</span><span class="tag">Casual</span></div></div>
+<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">98 E 4th Ave, San Mateo</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 398-2222</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Friends, Family</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Signature Sauerkraut Fish</span><span class="dish">Spicy Chili Chicken</span><span class="dish">Spicy Wontons</span><span class="dish">Crispy Calamari</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Steven Lin</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Sauerkraut Fish lives up to reputation - fish sliced with precision, deeply flavorful broth.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Priscilla Tang</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Pillow-soft fish with perfect Sichuan peppercorn "ma". Great for groups!</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Christopher Chung</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Instagramable and elevated. Signature Suancai fish is phenomenal.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Gets crowded during dinner time.</div></div>
+<div class="gallery"><img src="images/tai-er-2.jpg" alt="" loading="lazy"><img src="images/tai-er-3.jpg" alt="" loading="lazy"><img src="images/tai-er-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Riyakan Kapoor</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Ultimate brunch spot! Ube Latte is the star. French Toast is the best I've ever had.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Shubham Kamdi</span>
-                                <span class="review-rating">★★★★☆</span>
-                            </div>
-                            <div class="review-text">High-energy modern brunch. Millionaire's Bacon is the main draw but pricey. Two people easily $100.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Hua Mao</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Super popular in downtown Palo Alto. American + Asian fusion. Huge portions, cozy decor.</div>
-                        </div>
-                    </div>
+<!-- 6. Sushi Yoshizumi -->
+<div class="card" data-status="togo" data-cuisine="japanese">
+<div class="card-img">
+<img src="images/sushi-yoshizumi-1.jpg" alt="Sushi Yoshizumi" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.7</span><span class="count">198 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Sushi Yoshizumi</div><div class="card-tags"><span class="tag">San Mateo</span><span class="tag">Japanese</span><span class="tag">Omakase</span></div></div>
+<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">325 E 4th Ave, San Mateo</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 348-8126</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Omakase</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-4 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Edomae Omakase</span><span class="dish">Hokkaido Uni</span><span class="dish">Salt Water Eel</span><span class="dish">Squid</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Michelin Guide</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Cherished by expats. Chef Akira Yoshizumi perfected Edomae sushi style. Only 8 seats at the cypress bar.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">SF Chronicle</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Hokkaido uni is musky and bright; apricot-colored spoonful served atop vinegared rice wrapped in crisp seaweed.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations required. Only 8 seats. Book well in advance.</div></div>
+<div class="gallery"><img src="images/sushi-yoshizumi-2.jpg" alt="" loading="lazy"><img src="images/sushi-yoshizumi-3.jpg" alt="" loading="lazy"><img src="images/sushi-yoshizumi-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Walk-in only. Arrive before 8:30am on weekends or wait 1-2 hours.</div>
-                    </div>
+<!-- 7. Acquerello -->
+<div class="card" data-status="togo" data-cuisine="italian">
+<div class="card-img">
+<img src="images/acquerello-1.jpg" alt="Acquerello" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.6</span><span class="count">640 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Acquerello</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">Italian</span><span class="tag">Fine Dining</span></div></div>
+<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">1722 Sacramento St, SF</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 567-5432</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Anniversary</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Carrot &amp; Ginger Terrine</span><span class="dish">Handmade Pastas</span><span class="dish">Cheese Plate</span><span class="dish">Tasting Menu</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Michelin Guide</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Handmade pastas combine classic technique with personal style. Dishes arrive as visual masterpieces.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">TripAdvisor</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The class of San Francisco and the pinnacle of Italian fine dining in the bay.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations highly recommended. Tue-Sat dinner only.</div></div>
+<div class="gallery"><img src="images/acquerello-2.jpg" alt="" loading="lazy"><img src="images/acquerello-3.jpg" alt="" loading="lazy"><img src="images/acquerello-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="photo-gallery">
-                        <img src="images/sweet-maple-2.jpg" alt="Dish 3 1">
-                        <img src="images/sweet-maple-3.jpg" alt="Dish 3 2">
-                        <img src="images/sweet-maple-4.jpg" alt="Dish 3 3">
-                    </div>
-                </div>
-            </div>
+<!-- 8. Foreign Cinema -->
+<div class="card" data-status="togo" data-cuisine="american">
+<div class="card-img">
+<img src="images/foreign-cinema-1.jpg" alt="Foreign Cinema" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.5</span><span class="count">3,292 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Foreign Cinema</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">American</span><span class="tag">Date Night</span></div></div>
+<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">2534 Mission St, SF</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 648-7600</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Date, Special, Unique</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Pork Chop</span><span class="dish">Fresh Oysters</span><span class="dish">Californian-Mediterranean</span><span class="dish">Weekend Brunch</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">The Infatuation</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Beyond watching movies - the food is just as memorable. Produce-heavy Californian dishes.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Outdoor courtyard projects films nightly.</div></div>
+<div class="gallery"><img src="images/foreign-cinema-2.jpg" alt="" loading="lazy"><img src="images/foreign-cinema-3.jpg" alt="" loading="lazy"><img src="images/foreign-cinema-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-            <!-- Sushi Shin -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="japanese"
-                 data-occasion="special">
-                <div class="card-header">
-                    <img src="images/sushi-shin-1.jpg" alt="Sushi Shin">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.4</span>
-                        <span class="rating-count">219 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Sushi Shin</h3>
-                        <span class="price-tag">$$$$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">Redwood City</span>
-                        <span class="meta-tag">Omakase</span>
-                        <span class="meta-tag">Michelin</span>
-                    </div>
+<!-- 9. I Shanghai Delight -->
+<div class="card" data-status="togo" data-cuisine="chinese">
+<div class="card-img">
+<img src="images/i-shanghai-1.jpg" alt="I Shanghai Delight" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.4</span><span class="count">1,218 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">I Shanghai Delight 阿拉上海</div><div class="card-tags"><span class="tag">Fremont</span><span class="tag">Chinese</span><span class="tag">Casual</span></div></div>
+<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">6016 Stevenson Blvd, Fremont</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(510) 709-1196</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Family, Friends, Casual</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Xiao Long Bao</span><span class="dish">Soup Dumplings</span><span class="dish">Pan Fried Dumplings</span><span class="dish">Wonton Soup</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Most authentic soup dumplings. Every single dish was delicious!</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Customer</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">I grew up in Shanghai and found this the most authentic Shanghainese cuisine.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call ahead. Wed closed. Multiple Bay Area locations.</div></div>
+<div class="gallery"><img src="images/i-shanghai-2.jpg" alt="" loading="lazy"><img src="images/i-shanghai-3.jpg" alt="" loading="lazy"><img src="images/i-shanghai-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">312 Arguello St, Redwood City</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(650) 921-8809</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Special, Date, Celebration</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-4 people</span>
-                            </div>
-                        </div>
-                    </div>
+<!-- 10. La Mar -->
+<div class="card" data-status="togo" data-cuisine="peruvian">
+<div class="card-img">
+<img src="images/la-mar-1.jpg" alt="La Mar" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.5</span><span class="count">4,735 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">La Mar Cocina Peruana</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">Peruvian</span><span class="tag">Waterfront</span></div></div>
+<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">Pier 1½ The Embarcadero, SF</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 397-8880</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Date, Special, Waterfront</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Ceviche</span><span class="dish">Lomo Saltado</span><span class="dish">Arroz La Mar</span><span class="dish">Pisco Sour</span><span class="dish">Empanadas</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Condé Nast</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Arroz la mar with shrimp, clams, mussels, calamari, and arborio rice.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">TripAdvisor</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Fantastic fresh taro chips with dynamite green dipping sauce. Get the Pisco Sour!</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Waterfront at Pier 1½. Covered patio dining.</div></div>
+<div class="gallery"><img src="images/la-mar-2.jpg" alt="" loading="lazy"><img src="images/la-mar-3.jpg" alt="" loading="lazy"><img src="images/la-mar-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Omakase Menu</span>
-                            <span class="dish-tag">Otoro</span>
-                            <span class="dish-tag">Uni</span>
-                            <span class="dish-tag">Lobster Spring Roll</span>
-                        </div>
-                    </div>
+<!-- 11. Suppenküche -->
+<div class="card" data-status="togo" data-cuisine="german">
+<div class="card-img">
+<img src="images/suppenkuche-1.jpg" alt="Suppenküche" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.5</span><span class="count">1,944 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Suppenküche</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">German</span><span class="tag">Casual</span></div></div>
+<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">525 Laguna St, SF (Hayes Valley)</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 252-9289</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Friends, Brunch</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Wiener Schnitzel</span><span class="dish">Brotwurst</span><span class="dish">Schweinebraten</span><span class="dish">Pretzel</span><span class="dish">German Beer</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">The Infatuation</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The best German food in town. Less "how fast can you chug a beer" than Leopold's.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Traditional Bavarian Wirthaus dining. Warm atmosphere, specialty beer selection. Est. 1993.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call ahead. Oktoberfest specials Sept 20 - Oct 5. Famous for 1-liter beer mugs.</div></div>
+<div class="gallery"><img src="images/suppenkuche-2.jpg" alt="" loading="lazy"><img src="images/suppenkuche-3.jpg" alt="" loading="lazy"><img src="images/suppenkuche-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Lin Sun-Hoffman</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Standout sushi experience! Intimate setting, elegant atmosphere. Omakase showcases seasonal seafood from Japan. Chef Jason Zhan is masterful.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">David Famero</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Unforgettable omakase! Impeccable cleanliness, quiet precision. Flavors honor Japan with subtle Shanghai touch. Michelin star quality.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Michael Lyons</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Spectacular meal! Appetizer courses incredible - lobster spring roll and greeneye fish. Otoro and uni were amazing. Eel noodles blew my mind!</div>
-                        </div>
-                    </div>
+<!-- 12. Shang Cafe -->
+<div class="card" data-status="togo" data-cuisine="chinese">
+<div class="card-img">
+<img src="images/shang-cafe-1.jpg" alt="Shang Cafe" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.1</span><span class="count">553 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Shang Cafe</div><div class="card-tags"><span class="tag">San Jose</span><span class="tag">Chinese</span><span class="tag">Sichuan</span></div></div>
+<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">6154 Bollinger Rd, San Jose</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(408) 320-2876</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Friends, Family</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Spicy Fish Fillet</span><span class="dish">Mapo Tofu</span><span class="dish">Sichuan Chicken</span><span class="dish">Braised Pork Belly</span><span class="dish">Sichuan Cold Noodles</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Boiled Fish Fillet in Green Peppers Soup - relatively simple dishes but executed sooo well.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Reviewer</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Arguably one of the most authentic Sichuan spots in South Bay.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call ahead. Wed closed. Lunch 11am-2pm, Dinner 5pm-8:15pm.</div></div>
+<div class="gallery"><img src="images/shang-cafe-2.jpg" alt="" loading="lazy"><img src="images/shang-cafe-3.jpg" alt="" loading="lazy"><img src="images/shang-cafe-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Reservations highly recommended. Book via website or call. Intimate seating, limited availability.</div>
-                    </div>
+<!-- 13. Tony's Pizza -->
+<div class="card" data-status="togo" data-cuisine="italian">
+<div class="card-img">
+<img src="images/tonys-pizza-1.jpg" alt="Tony's Pizza Napoletana" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.5</span><span class="count">9,858 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Tony's Pizza Napoletana</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">Italian</span><span class="tag">Pizza</span></div></div>
+<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">1570 Stockton St, SF (North Beach)</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 835-9888</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Family, Pizza Night</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Margherita</span><span class="dish">Neapolitan Pizza</span><span class="dish">Sicilian Pizza</span><span class="dish">New York Style</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">The Infatuation</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">13-time World Pizza Champion Tony Gemignani. Tony's is impressive.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Several styles: Neapolitan, Classic American, Sicilian, Pizza Romana, New York, Detroit and St. Louis.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Long lines expected. Join waitlist online. Daily 12pm-10pm.</div></div>
+<div class="gallery"><img src="images/tonys-pizza-2.jpg" alt="" loading="lazy"><img src="images/tonys-pizza-3.jpg" alt="" loading="lazy"><img src="images/tonys-pizza-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-                    <div class="photo-gallery">
-                        <img src="images/sushi-shin-2.jpg" alt="Sushi 3 1">
-                        <img src="images/sushi-shin-3.jpg" alt="Sushi 3 2">
-                        <img src="images/sushi-shin-4.jpg" alt="Sushi 3 3">
-                    </div>
-                </div>
-            </div>
+<!-- 14. Imperial Treasure -->
+<div class="card" data-status="togo" data-cuisine="chinese">
+<div class="card-img">
+<img src="images/imperial-treasure-1.jpg" alt="Imperial Treasure" loading="lazy">
+<span class="badge badge-togo">To Go</span>
+<div class="rating-pill"><span class="score">4.1</span><span class="count">261 reviews</span></div>
+</div>
+<div class="card-summary">
+<div><div class="card-name">Imperial Treasure</div><div class="card-tags"><span class="tag">Palo Alto</span><span class="tag">Chinese</span><span class="tag">Fine Dining</span></div></div>
+<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
+</div>
+<div class="card-detail"><div class="detail-inner">
+<div class="info-grid">
+<div><div class="info-label">📍 Address</div><div class="info-val">151 California Ave, Palo Alto</div></div>
+<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 656-9597</div></div>
+<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Business, Family</div></div>
+<div><div class="info-label">👥 Capacity</div><div class="info-val">2-10 people</div></div>
+</div>
+<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
+<span class="dish">Peking Duck</span><span class="dish">Walnut Shrimp</span><span class="dish">Big Plate Chicken</span><span class="dish">Lion Head Meatballs</span><span class="dish">Szechuan Fish</span>
+</div></div>
+<div class="reviews">
+<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Traditional Roast Peking Duck. Thin, crispy skin with authentic preparation.</div></div>
+<div class="review"><div class="rev-head"><span class="rev-name">Website</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Michelin-Level Chinese in Palo Alto! Famous walnut shrimp and fiery Big Plate Chicken.</div></div>
+</div>
+<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended for dinner. Perfect for business lunches or celebrations.</div></div>
+<div class="gallery"><img src="images/imperial-treasure-2.jpg" alt="" loading="lazy"><img src="images/imperial-treasure-3.jpg" alt="" loading="lazy"><img src="images/imperial-treasure-4.jpg" alt="" loading="lazy"></div>
+</div></div>
+</div>
 
-            <!-- Ping's Bistro Cupertino -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="yunnan"
-                 data-occasion="date">
-                <div class="card-header">
-                    <img src="images/pings-bistro-1.jpg" alt="Ping's Bistro">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.4</span>
-                        <span class="rating-count">194 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Ping's Bistro 留湘</h3>
-                        <span class="price-tag">$$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">Cupertino</span>
-                        <span class="meta-tag">Yunnan</span>
-                        <span class="meta-tag">Dai Cuisine</span>
-                    </div>
+</div>
 
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">10700 S De Anza Blvd, Cupertino</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(408) 564-5134</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Date, Family, Friends</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-8 people</span>
-                            </div>
-                        </div>
-                    </div>
+<div class="empty" id="empty">🔍 No restaurants match your filters</div>
 
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Dai Style Pork Ribs</span>
-                            <span class="dish-tag">Grilled Fish with Lemongrass</span>
-                            <span class="dish-tag">Boletus Fried Rice</span>
-                            <span class="dish-tag">Wild Mushrooms with Pork</span>
-                        </div>
-                    </div>
+<script>
+const grid=document.getElementById('grid');
+const cards=grid.querySelectorAll('.card');
+const pills=document.querySelectorAll('.pill');
+const cuisineSelect=document.getElementById('cuisineFilter');
+let statusFilter='all',cuisineFilter='all';
 
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">JP Figure</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Completely blown away by vibrant flavors and beautiful presentation! Authentic Yunnan and Dai-style cuisine. Dai-style pork ribs and grilled lemongrass fish are must-orders.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Chelsea</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Every dish is CRAZY good! Braised wild mushrooms with pork has so much flavor. Osmanthus Honey Milk Jelly is the best dessert. Highly recommend coming right at 5pm opening!</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Kevin Kruemp</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Excellent restaurant! Food is very authentic and atmosphere is bright and inviting. Options for adventurous eaters and those wanting something reliable.</div>
-                        </div>
-                    </div>
+// Toggle expand
+grid.addEventListener('click',e=>{
+const card=e.target.closest('.card');
+if(!card)return;
+// Don't toggle if clicking a link
+if(e.target.tagName==='A')return;
+card.classList.toggle('open');
+});
 
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Walk-in or call ahead. Very popular - arrive at 5pm opening or expect 1+ hour wait. 18% service charge applied.</div>
-                    </div>
+// Status pills
+pills.forEach(p=>p.addEventListener('click',()=>{
+pills.forEach(b=>b.classList.remove('active'));
+p.classList.add('active');
+statusFilter=p.dataset.status;
+applyFilters();
+}));
 
-                    <div class="photo-gallery">
-                        <img src="images/sushi-shin-2.jpg" alt="Food 3 1">
-                        <img src="images/sushi-shin-3.jpg" alt="Food 3 2">
-                        <img src="images/sushi-shin-4.jpg" alt="Food 3 3">
-                    </div>
-                </div>
-            </div>
+// Cuisine
+cuisineSelect.addEventListener('change',()=>{
+cuisineFilter=cuisineSelect.value;
+applyFilters();
+});
 
-            <!-- JiangNan Delicacy -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="jiangsu"
-                 data-occasion="date">
-                <div class="card-header">
-                    <img src="images/jiangnan-1.jpg" alt="JiangNan Delicacy">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.1</span>
-                        <span class="rating-count">84 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">JiangNan Delicacy 江南雅厨</h3>
-                        <span class="price-tag">$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">Milpitas</span>
-                        <span class="meta-tag">Jiangsu</span>
-                        <span class="meta-tag">Suzhou</span>
-                    </div>
-
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">1750 N Milpitas Blvd, Milpitas</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(669) 263-6115</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Date, Family, Business</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-8 people</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Sweet & Sour Fish</span>
-                            <span class="dish-tag">Sticky Rice Cake</span>
-                            <span class="dish-tag">Braised River Eel</span>
-                            <span class="dish-tag">Sweet Braised Lotus Roots</span>
-                        </div>
-                    </div>
-
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Mia Mi</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Viral on Red Note! Classy, delicate and elegant decoration. Artists playing traditional music. Sweet and sour fish, sticky rice cake, braised river eel all amazing!</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Colleen Bei</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Wonderful dining experience! Food absolutely delicious with authentic flavors and fresh ingredients. Service attentive and friendly. True taste of Suzhou cuisine!</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">H. J.</span>
-                                <span class="review-rating">★★★☆☆</span>
-                            </div>
-                            <div class="review-text">Nicely decorated, no wait. Dishes about what we expected. Food noticeably too sweet for our taste. Different from more commonly seen Sichuan style.</div>
-                        </div>
-                    </div>
-
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Walk-in or call ahead. Reservations recommended for weekends. Live traditional music on select evenings.</div>
-                    </div>
-
-                    <div class="photo-gallery">
-                        <img src="images/jiangnan-2.jpg" alt="Dish 1">
-                        <img src="images/jiangnan-3.jpg" alt="Dish 2">
-                        <img src="images/jiangnan-4.jpg" alt="Dish 3">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tai Er -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="sichuan"
-                 data-occasion="casual">
-                <div class="card-header">
-                    <img src="images/tai-er-1.jpg" alt="Tai Er">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.1</span>
-                        <span class="rating-count">140 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Tai Er 太二酸菜鱼</h3>
-                        <span class="price-tag">$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">San Mateo</span>
-                        <span class="meta-tag">Sichuan</span>
-                        <span class="meta-tag">Casual</span>
-                    </div>
-
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">98 E 4th Ave, San Mateo</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(650) 398-2222</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Casual, Friends, Family</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-6 people</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Signature Sauerkraut Fish</span>
-                            <span class="dish-tag">Spicy Chili Chicken</span>
-                            <span class="dish-tag">Spicy Wontons</span>
-                            <span class="dish-tag">Crispy Calamari</span>
-                        </div>
-                    </div>
-
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Steven Lin</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">High-end Chinese restaurant with refined Sichuan dining! Sauerkraut Fish lives up to reputation - fish sliced with precision, deeply flavorful broth. Spice carefully calibrated.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Priscilla Tang</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Favorites were sauerkraut fish - pillow-soft and super tender with perfect Sichuan peppercorn "ma". Chili chicken not greasy at all, very juicy. Great for groups!</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Christopher Chung</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">New-modern Chinese-Sichuan restaurant, Instagramable and elevated. Signature Suancai fish is phenomenal - fragrant green Sichuan peppercorns, fermented vegetable provides depth.</div>
-                        </div>
-                    </div>
-
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Reservations recommended to avoid long wait. Can book for next day. Gets crowded during dinner time.</div>
-                    </div>
-
-                    <div class="photo-gallery">
-                        <img src="images/tai-er-2.jpg" alt="Fish 1">
-                        <img src="images/tai-er-3.jpg" alt="Fish 2">
-                        <img src="images/tai-er-4.jpg" alt="Fish 3">
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Sushi Yoshizumi</h3>
-                        <span class="price-tag">$$$$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">San Mateo</span>
-                        <span class="meta-tag">Japanese</span>
-                        <span class="meta-tag">Special</span>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">325 E 4th Ave, San Mateo</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(650) 348-8126</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Special, Date, Omakase</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-4 people</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Edomae Omakase</span>
-                            <span class="dish-tag">Hokkaido Uni</span>
-                            <span class="dish-tag">Salt Water Eel</span>
-                            <span class="dish-tag">Squid</span>
-                        </div>
-                    </div>
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Michelin Guide</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Cherished by expats. Chef Akira Yoshizumi perfected Edomae sushi style. Only 8 seats at the cypress bar.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">SF Chronicle</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Hokkaido uni is musky and bright; apricot-colored spoonful served atop vinegared rice wrapped in crisp seaweed.</div>
-                        </div>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Reservations required. Only 8 seats. Book well in advance.</div>
-                    </div>
-                    <div class="photo-gallery">
-                        <img src="images/sushi-yoshizumi-2.jpg" alt="Sushi 3 1">
-                        <img src="images/sushi-yoshizumi-3.jpg" alt="Sushi 3 2">
-                        <img src="images/sushi-yoshizumi-4.jpg" alt="Sushi 3 3">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Acquerello -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="italian"
-                 data-occasion="special">
-                <div class="card-header">
-                    <img src="images/acquerello-1.jpg" alt="Acquerello">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.6</span>
-                        <span class="rating-count">640 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Acquerello</h3>
-                        <span class="price-tag">$$$$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">San Francisco</span>
-                        <span class="meta-tag">Italian</span>
-                        <span class="meta-tag">Special</span>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">1722 Sacramento St, SF</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(415) 567-5432</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Special, Date, Anniversary</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-6 people</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Carrot & Ginger Terrine</span>
-                            <span class="dish-tag">Handmade Pastas</span>
-                            <span class="dish-tag">Cheese Plate</span>
-                            <span class="dish-tag">Tasting Menu</span>
-                        </div>
-                    </div>
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Michelin Guide</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Handmade pastas combine classic technique with personal style. Dishes arrive as visual masterpieces.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">TripAdvisor</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">The class of San Francisco and the pinnacle of Italian fine dining in the bay.</div>
-                        </div>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Reservations highly recommended. Tue-Sat dinner only.</div>
-                    </div>
-                    <div class="photo-gallery">
-                        <img src="images/acquerello-2.jpg" alt="Dish 3 1">
-                        <img src="images/acquerello-3.jpg" alt="Dish 3 2">
-                        <img src="images/acquerello-4.jpg" alt="Dish 3 3">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Foreign Cinema -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="american"
-                 data-occasion="date">
-                <div class="card-header">
-                    <img src="images/foreign-cinema-1.jpg" alt="Foreign Cinema">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.5</span>
-                        <span class="rating-count">3292 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Foreign Cinema</h3>
-                        <span class="price-tag">$$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">San Francisco</span>
-                        <span class="meta-tag">American</span>
-                        <span class="meta-tag">Date</span>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">2534 Mission St, SF</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(415) 648-7600</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Date, Special, Unique</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-6 people</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Pork Chop</span>
-                            <span class="dish-tag">Fresh Oysters</span>
-                            <span class="dish-tag">Californian-Mediterranean</span>
-                            <span class="dish-tag">Weekend Brunch</span>
-                        </div>
-                    </div>
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">The Infatuation</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Beyond watching movies - the food is just as memorable. Produce-heavy Californian dishes.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">OpenTable</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Stellar service, creative menu, delicious cocktails. Phenomenal pork chop.</div>
-                        </div>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Reservations recommended. Indoor dining + outdoor movie screenings.</div>
-                    </div>
-                    <div class="photo-gallery">
-                        <img src="images/foreign-cinema-2.jpg" alt="Cinema 3 1">
-                        <img src="images/foreign-cinema-3.jpg" alt="Cinema 3 2">
-                        <img src="images/foreign-cinema-4.jpg" alt="Cinema 3 3">
-                    </div>
-                </div>
-            </div>
-
-            <!-- I Shanghai Delight 阿拉上海 -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="chinese"
-                 data-occasion="casual">
-                <div class="card-header">
-                    <img src="images/i-shanghai-1.jpg" alt="I Shanghai Delight">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.4</span>
-                        <span class="rating-count">1218 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">I Shanghai Delight 阿拉上海</h3>
-                        <span class="price-tag">$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">Fremont</span>
-                        <span class="meta-tag">Chinese</span>
-                        <span class="meta-tag">Casual</span>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">6016 Stevenson Blvd, Fremont</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(510) 709-1196</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Family, Friends, Casual</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-8 people</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Xiao Long Bao</span>
-                            <span class="dish-tag">Soup Dumplings</span>
-                            <span class="dish-tag">Pan Fried Dumplings</span>
-                            <span class="dish-tag">Wonton Soup</span>
-                        </div>
-                    </div>
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Yelp</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Most authentic soup dumplings. Every single dish was delicious!</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Customer</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">I grew up in Shanghai and found this the most authentic Shanghainese cuisine.</div>
-                        </div>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Walk-in or call ahead. Wed closed. Multiple Bay Area locations.</div>
-                    </div>
-                    <div class="photo-gallery">
-                        <img src="images/foreign-cinema-2.jpg" alt="Dumplings 3 1">
-                        <img src="images/foreign-cinema-3.jpg" alt="Dumplings 3 2">
-                        <img src="images/foreign-cinema-4.jpg" alt="Dumplings 3 3">
-                    </div>
-                </div>
-            </div>
-
-            <!-- La Mar -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="peruvian"
-                 data-occasion="date">
-                <div class="card-header">
-                    <img src="images/la-mar-1.jpg" alt="La Mar">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.5</span>
-                        <span class="rating-count">4735 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">La Mar Cocina Peruana</h3>
-                        <span class="price-tag">$$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">San Francisco</span>
-                        <span class="meta-tag">Peruvian</span>
-                        <span class="meta-tag">Date</span>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">Pier 1 1/2 The Embarcadero, SF</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(415) 397-8880</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Date, Special, Waterfront</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-8 people</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Ceviche</span>
-                            <span class="dish-tag">Lomo Saltado</span>
-                            <span class="dish-tag">Arroz La Mar</span>
-                            <span class="dish-tag">Pisco Sour</span>
-                            <span class="dish-tag">Empanadas</span>
-                        </div>
-                    </div>
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Condé Nast</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Arroz la mar with shrimp, clams, mussels, calamari, and arborio rice.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">TripAdvisor</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Fantastic fresh taro chips with dynamite green dipping sauce. Get the Pisco Sour!</div>
-                        </div>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Reservations recommended. Waterfront at Pier 1 1/2. Covered patio dining.</div>
-                    </div>
-                    <div class="photo-gallery">
-                        <img src="images/la-mar-2.jpg" alt="Peruvian 3 1">
-                        <img src="images/la-mar-3.jpg" alt="Peruvian 3 2">
-                        <img src="images/la-mar-4.jpg" alt="Peruvian 3 3">
-                    </div>
-                </div>
-            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-            <!-- Suppenkuche -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="german"
-                 data-occasion="casual">
-                <div class="card-header">
-                    <img src="images/suppenkuche-1.jpg" alt="Suppenkuche">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.5</span>
-                        <span class="rating-count">1944 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Suppenküche</h3>
-                        <span class="price-tag">$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">San Francisco</span>
-                        <span class="meta-tag">German</span>
-                        <span class="meta-tag">Casual</span>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">525 Laguna St, SF (Hayes Valley)</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(415) 252-9289</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Casual, Friends, Brunch</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-8 people</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Wiener Schnitzel</span>
-                            <span class="dish-tag">Brotwurst</span>
-                            <span class="dish-tag">Schweinebraten</span>
-                            <span class="dish-tag">Pretzel</span>
-                            <span class="dish-tag">German Beer</span>
-                        </div>
-                    </div>
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">The Infatuation</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">The best German food in town. Less "how fast can you chug a beer" than Leopold's.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Yelp</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Traditional Bavarian Wirthaus dining. Known for warm atmosphere, specialty beer selection and Sunday brunch. Established 1993.</div>
-                        </div>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Walk-in or call ahead. Oktoberfest specials Sept 20 - Oct 5. Famous for 1-liter beer mugs.</div>
-                    </div>
-                    <div class="photo-gallery">
-                        <img src="images/suppenkuche-2.jpg" alt="German 3 3 1">
-                        <img src="images/suppenkuche-3.jpg" alt="German 3 3 2">
-                        <img src="images/suppenkuche-4.jpg" alt="German 3 3 3">
-                    </div>
-                </div>
-            </div>
-
-        
-
-            <!-- Shang Cafe -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="chinese"
-                 data-occasion="casual">
-                <div class="card-header">
-                    <img src="images/shang-cafe-1.jpg" alt="Shang Cafe">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.1</span>
-                        <span class="rating-count">553 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Shang Cafe</h3>
-                        <span class="price-tag">$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">San Jose</span>
-                        <span class="meta-tag">Chinese</span>
-                        <span class="meta-tag">Casual</span>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">6154 Bollinger Rd, San Jose</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(408) 320-2876</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Casual, Friends, Family</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-8 people</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Spicy Fish Fillet</span>
-                            <span class="dish-tag">Mapo Tofu</span>
-                            <span class="dish-tag">Sichuan Chicken</span>
-                            <span class="dish-tag">Braised Pork Belly</span>
-                            <span class="dish-tag">Sichuan Cold Noodles</span>
-                        </div>
-                    </div>
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Yelp</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Boiled Fish Fillet in Green Peppers Soup and Steamed Egg with Minced Pork - relatively simple dishes but executed sooo well.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Reviewer</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Arguably one of the most authentic Sichuan spots in South Bay. Hot intestines was super crispy and spicy.</div>
-                        </div>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Walk-in or call ahead. Wed closed. Lunch 11am-2pm, Dinner 5pm-8:15pm.</div>
-                    </div>
-                    <div class="photo-gallery">
-                        <img src="images/shang-cafe-2.jpg" alt="Sichuan 3 1">
-                        <img src="images/shang-cafe-3.jpg" alt="Sichuan 3 2">
-                        <img src="images/shang-cafe-4.jpg" alt="Sichuan 3 3">
-                    </div>
-                </div>
-            </div>
-
-        
-
-            <!-- Tony's Pizza Napoletana -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="italian"
-                 data-occasion="casual">
-                <div class="card-header">
-                    <img src="images/tonys-pizza-1.jpg" alt="Tony's Pizza Napoletana">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.5</span>
-                        <span class="rating-count">9858 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Tony's Pizza Napoletana</h3>
-                        <span class="price-tag">$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">San Francisco</span>
-                        <span class="meta-tag">Italian</span>
-                        <span class="meta-tag">Casual</span>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">1570 Stockton St, SF (North Beach)</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(415) 835-9888</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Casual, Family, Pizza Night</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-8 people</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Margherita</span>
-                            <span class="dish-tag">Neapolitan Pizza</span>
-                            <span class="dish-tag">Sicilian Pizza</span>
-                            <span class="dish-tag">New York Style</span>
-                            <span class="dish-tag">Gluten Free</span>
-                        </div>
-                    </div>
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">The Infatuation</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">13-time World Pizza Champion Tony Gemignani. For a spot that makes more types of pizza than Sean Combs has had stage names, Tony's is impressive.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Yelp</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">State of the art full service restaurant offering several styles: Neapolitan, Classic American, Sicilian, Pizza Romana, New York, Detroit and St. Louis.</div>
-                        </div>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Long lines expected. Join waitlist online. Daily 12pm-10pm. Call ahead for availability.</div>
-                    </div>
-                    <div class="photo-gallery">
-                        <img src="images/shang-cafe-2.jpg" alt="Pizza 3 1">
-                        <img src="images/shang-cafe-3.jpg" alt="Pizza 3 2">
-                        <img src="images/shang-cafe-4.jpg" alt="Pizza 3 3">
-                    </div>
-                </div>
-            </div>
-
-        
-
-            <!-- Imperial Treasure -->
-            <div class="restaurant-card" 
-                 data-status="togo" 
-                 data-region="bay-area" 
-                 data-cuisine="chinese"
-                 data-occasion="special">
-                <div class="card-header">
-                    <img src="images/imperial-treasure-1.jpg" alt="Imperial Treasure">
-                    <span class="status-badge status-togo">To Go</span>
-                    <div class="rating-box">
-                        <span class="rating-score">4.1</span>
-                        <span class="rating-count">261 reviews</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title-row">
-                        <h3 class="restaurant-name">Imperial Treasure</h3>
-                        <span class="price-tag">$$$</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-tag">Palo Alto</span>
-                        <span class="meta-tag">Chinese</span>
-                        <span class="meta-tag">Special</span>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">📍 Address</span>
-                                <span class="info-value">151 California Ave, Palo Alto</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(650) 656-9597</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Special, Business, Family</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">👥 Capacity</span>
-                                <span class="info-value">2-10 people</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dishes-section">
-                        <div class="dishes-title">Must Try</div>
-                        <div class="dishes-list">
-                            <span class="dish-tag">Peking Duck</span>
-                            <span class="dish-tag">Walnut Shrimp</span>
-                            <span class="dish-tag">Big Plate Chicken</span>
-                            <span class="dish-tag">Lion Head Meatballs</span>
-                            <span class="dish-tag">Szechuan Fish</span>
-                        </div>
-                    </div>
-                    <div class="reviews-section">
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Yelp</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Traditional Roast Peking Duck prepared since the Imperial era. Thin, crispy skin with authentic preparation.</div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="reviewer">Website</span>
-                                <span class="review-rating">★★★★★</span>
-                            </div>
-                            <div class="review-text">Michelin-Level Chinese in Palo Alto! Famous walnut shrimp's creamy crunch and fiery Big Plate Chicken.</div>
-                        </div>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-label">Booking</div>
-                        <div class="booking-info">Reservations recommended for dinner. Perfect for business lunches, family celebrations, or romantic dinners.</div>
-                    </div>
-                    <div class="photo-gallery">
-                        <img src="images/imperial-treasure-2.jpg" alt="Chinese 3 1">
-                        <img src="images/imperial-treasure-3.jpg" alt="Chinese 3 2">
-                        <img src="images/imperial-treasure-4.jpg" alt="Chinese 3 3">
-                    </div>
-                </div>
-            </div>
-
-                <div class="empty-state hidden" id="empty-state">
-            <div class="empty-state-icon">🔍</div>
-            <p>No restaurants match your filters</p>
-        </div>
-    </main>
-
-    <script>
-        let currentFilters = {
-            status: 'all',
-            region: 'all',
-            cuisine: 'all',
-            occasion: 'all'
-        };
-
-        function filterRestaurants(type, value) {
-            currentFilters[type] = value;
-
-            if (type === 'status') {
-                document.querySelectorAll('[data-filter]').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.filter === value) btn.classList.add('active');
-                });
-
-                const titles = {
-                    'all': 'All Restaurants',
-                    'tried': 'Tried Restaurants',
-                    'togo': 'To Go List'
-                };
-                document.getElementById('list-title').textContent = titles[value];
-            }
-
-            const cards = document.querySelectorAll('.restaurant-card');
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const matchesStatus = currentFilters.status === 'all' || card.dataset.status === currentFilters.status;
-                const matchesRegion = currentFilters.region === 'all' || card.dataset.region === currentFilters.region;
-                const matchesCuisine = currentFilters.cuisine === 'all' || card.dataset.cuisine === currentFilters.cuisine;
-                const matchesOccasion = currentFilters.occasion === 'all' || card.dataset.occasion === currentFilters.occasion;
-
-                if (matchesStatus && matchesRegion && matchesCuisine && matchesOccasion) {
-                    card.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            document.getElementById('empty-state').classList.toggle('hidden', visibleCount > 0);
-            updateStats();
-        }
-
-        function updateStats() {
-            const visibleCards = document.querySelectorAll('.restaurant-card:not(.hidden)');
-            let triedCount = 0, togoCount = 0;
-
-            visibleCards.forEach(card => {
-                if (card.dataset.status === 'tried') triedCount++;
-                if (card.dataset.status === 'togo') togoCount++;
-            });
-
-            document.getElementById('total-count').textContent = visibleCards.length;
-            document.getElementById('tried-count').textContent = triedCount;
-            document.getElementById('togo-count').textContent = togoCount;
-        }
-
-        updateStats();
-    </script>
+function applyFilters(){
+let vis=0,tried=0,togo=0;
+cards.forEach(c=>{
+const ms=statusFilter==='all'||c.dataset.status===statusFilter;
+const mc=cuisineFilter==='all'||c.dataset.cuisine===cuisineFilter;
+const show=ms&&mc;
+c.classList.toggle('hidden',!show);
+if(show){vis++;if(c.dataset.status==='tried')tried++;if(c.dataset.status==='togo')togo++;}
+});
+document.getElementById('sTotal').textContent=vis;
+document.getElementById('sTried').textContent=tried;
+document.getElementById('sTogo').textContent=togo;
+document.getElementById('empty').classList.toggle('show',vis===0);
+}
+applyFilters();
+</script>
 </body>
 </html>
