@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": 400,
+    "message": "The photo resource in the request is invalid. Please retrieve it from Places API endpoints.",
+    "status": "INVALID_ARGUMENT"
+  }
+}

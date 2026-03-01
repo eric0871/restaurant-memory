@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": 400,
+    "message": "The photo resource does not associate with the corresponding place resource. Please retrieve it from Places API endpoints.",
+    "status": "INVALID_ARGUMENT"
+  }
+}
