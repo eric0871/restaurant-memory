@@ -206,7 +206,7 @@ transition:all .3s}
 </div>
 
 <!-- 3. Ping's Bistro -->
-<div class="card" data-location="bay-area" data-status="tried" data-occasion="date" data-cuisine="yunnan">
+<div class="card" data-location="bay-area" data-status="tried" data-occasion="date" data-cuisine="yunnan" data-date="2025-01-12" data-date="2025-02-15" data-date="2025-02-19">
 <div class="card-img">
 <img src="images/pings-bistro-1.jpg" alt="Ping's Bistro" loading="lazy">
 <span class="badge badge-tried">Tried · 1/12</span>
@@ -684,20 +684,50 @@ applyFilters();
 });
 
 function applyFilters(){
-let vis=0,tried=0,togo=0;
-cards.forEach(c=>{
+let tried=0,togo=0;
+let visibleCards=[];
+
+// First pass: determine visibility
+const allCards=Array.from(cards);
+allCards.forEach(c=>{
 const ms=statusFilter==='all'||c.dataset.status===statusFilter;
 const mc=cuisineFilter==='all'||c.dataset.cuisine===cuisineFilter;
 const ml=locationFilter==='all'||c.dataset.location===locationFilter;
 const mo=occasionFilter==='all'||c.dataset.occasion===occasionFilter;
 const show=ms&&mc&&ml&&mo;
 c.classList.toggle('hidden',!show);
-if(show){vis++;if(c.dataset.status==='tried')tried++;if(c.dataset.status==='togo')togo++;}
+if(show){
+visibleCards.push(c);
+if(c.dataset.status==='tried')tried++;
+if(c.dataset.status==='togo')togo++;
+}
 });
-document.getElementById('sTotal').textContent=vis;
+
+// Sort visible cards
+if(statusFilter==='tried'){
+// Sort by date descending (newest first)
+visibleCards.sort((a,b)=>{
+const dateA=a.dataset.date||'2000-01-01';
+const dateB=b.dataset.date||'2000-01-01';
+return dateB.localeCompare(dateA);
+});
+}else if(statusFilter==='all'||statusFilter==='togo'){
+// Random shuffle
+for(let i=visibleCards.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[visibleCards[i],visibleCards[j]]=[visibleCards[j],visibleCards[i]];
+}
+}
+
+// Reorder in DOM
+const grid=document.getElementById('grid');
+visibleCards.forEach(c=>grid.appendChild(c));
+
+// Update stats
+document.getElementById('sTotal').textContent=visibleCards.length;
 document.getElementById('sTried').textContent=tried;
 document.getElementById('sTogo').textContent=togo;
-document.getElementById('empty').classList.toggle('show',vis===0);
+document.getElementById('empty').classList.toggle('show',visibleCards.length===0);
 }
 applyFilters();
 </script>
