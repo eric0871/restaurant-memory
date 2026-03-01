@@ -20,7 +20,9 @@
             --shadow: 0 2px 8px rgba(0,0,0,0.04);
             --shadow-hover: 0 8px 24px rgba(0,0,0,0.08);
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
@@ -28,6 +30,7 @@
             line-height: 1.6;
             font-size: 14px;
         }
+
         .header {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border);
@@ -36,14 +39,18 @@
             top: 0;
             z-index: 100;
         }
+
         .header-content { max-width: 1400px; margin: 0 auto; }
+
         .header h1 {
             font-size: 28px;
             font-weight: 500;
             letter-spacing: -0.5px;
             margin-bottom: 8px;
         }
+
         .header-subtitle { color: var(--text-secondary); font-weight: 400; }
+
         .stats-bar {
             display: flex;
             gap: 40px;
@@ -51,13 +58,16 @@
             padding-top: 24px;
             border-top: 1px solid var(--border);
         }
+
         .stat-item { display: flex; flex-direction: column; gap: 4px; }
         .stat-value { font-size: 32px; font-weight: 300; color: var(--accent); }
         .stat-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
         .filters-container { background: var(--bg-secondary); padding: 20px 60px; border-bottom: 1px solid var(--border); }
         .filters { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
         .filter-group { display: flex; flex-direction: column; gap: 6px; }
         .filter-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
         select, .filter-btn {
             padding: 10px 16px;
             border: 1px solid var(--border);
@@ -69,23 +79,17 @@
             transition: all 0.2s;
             min-width: 140px;
         }
+
         select:hover, .filter-btn:hover { border-color: var(--accent-light); }
         select:focus { outline: none; border-color: var(--accent); }
         .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
         .filter-divider { width: 1px; height: 40px; background: var(--border); margin: 0 8px; }
+
         .main { max-width: 1400px; margin: 0 auto; padding: 40px 60px; }
-        .section-title {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .section-title { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
         .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
         .restaurants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 24px; }
+
         .restaurant-card {
             background: var(--bg-card);
             border-radius: 16px;
@@ -94,9 +98,12 @@
             transition: all 0.3s ease;
             border: 1px solid var(--border);
         }
+
         .restaurant-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+
         .card-header { position: relative; height: 200px; overflow: hidden; }
         .card-header img { width: 100%; height: 100%; object-fit: cover; }
+
         .status-badge {
             position: absolute;
             top: 16px;
@@ -108,8 +115,10 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+
         .status-tried { background: var(--success); color: white; }
         .status-togo { background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border); }
+
         .rating-box {
             position: absolute;
             bottom: 16px;
@@ -122,23 +131,29 @@
             gap: 8px;
             backdrop-filter: blur(10px);
         }
+
         .rating-score { font-size: 20px; font-weight: 600; color: var(--accent); }
         .rating-count { font-size: 11px; color: var(--text-muted); }
         .card-body { padding: 24px; }
+
         .card-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
         .restaurant-name { font-size: 20px; font-weight: 500; letter-spacing: -0.3px; }
         .price-tag { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
         .meta-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
         .meta-tag { font-size: 12px; color: var(--text-secondary); background: var(--bg-secondary); padding: 4px 10px; border-radius: 6px; }
+
         .info-section { margin-bottom: 16px; }
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .info-item { display: flex; flex-direction: column; gap: 2px; }
         .info-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
         .info-value { font-size: 13px; color: var(--text-primary); }
+
         .dishes-section { margin: 20px 0; padding: 16px; background: var(--bg-secondary); border-radius: 12px; }
         .dishes-title { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
         .dishes-list { display: flex; flex-wrap: wrap; gap: 8px; }
         .dish-tag { font-size: 12px; padding: 6px 12px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border); }
+
         .reviews-section { margin-top: 16px; }
         .review { padding: 12px 0; border-bottom: 1px solid var(--border); }
         .review:last-child { border-bottom: none; }
@@ -146,14 +161,19 @@
         .reviewer { font-size: 12px; font-weight: 500; }
         .review-rating { font-size: 11px; color: #f39c12; }
         .review-text { font-size: 12px; color: var(--text-secondary); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
         .booking-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
         .booking-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
         .booking-info { font-size: 13px; color: var(--text-primary); }
+
         .photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
         .photo-gallery img { width: 100%; height: 80px; object-fit: cover; border-radius: 8px; }
+
         .empty-state { text-align: center; padding: 80px 40px; color: var(--text-muted); }
         .empty-state-icon { font-size: 48px; margin-bottom: 16px; }
+
         .hidden { display: none !important; }
+
         @media (max-width: 768px) {
             .header, .filters-container, .main { padding-left: 20px; padding-right: 20px; }
             .filters { flex-direction: column; align-items: stretch; }
@@ -171,7 +191,7 @@
             <p class="header-subtitle">E's personal dining collection</p>
             <div class="stats-bar">
                 <div class="stat-item">
-                    <span class="stat-value" id="total-count">2</span>
+                    <span class="stat-value" id="total-count">5</span>
                     <span class="stat-label">Total</span>
                 </div>
                 <div class="stat-item">
@@ -179,7 +199,7 @@
                     <span class="stat-label">Tried</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-value" id="togo-count">2</span>
+                    <span class="stat-value" id="togo-count">5</span>
                     <span class="stat-label">To Go</span>
                 </div>
             </div>
@@ -196,7 +216,9 @@
                     <button class="filter-btn" data-filter="togo" onclick="filterRestaurants('status', 'togo')">To Go</button>
                 </div>
             </div>
+
             <div class="filter-divider"></div>
+
             <div class="filter-group">
                 <span class="filter-label">Region</span>
                 <select id="region-filter" onchange="filterRestaurants('region', this.value)">
@@ -207,6 +229,7 @@
                     <option value="los-angeles">Los Angeles</option>
                 </select>
             </div>
+
             <div class="filter-group">
                 <span class="filter-label">Cuisine</span>
                 <select id="cuisine-filter" onchange="filterRestaurants('cuisine', this.value)">
@@ -214,11 +237,13 @@
                     <option value="american">American</option>
                     <option value="asian-fusion">Asian Fusion</option>
                     <option value="chinese">Chinese</option>
-                    <option value="french">French</option>
-                    <option value="italian">Italian</option>
                     <option value="japanese">Japanese</option>
+                    <option value="sichuan">Sichuan</option>
+                    <option value="yunnan">Yunnan</option>
+                    <option value="jiangsu">Jiangsu</option>
                 </select>
             </div>
+
             <div class="filter-group">
                 <span class="filter-label">Occasion</span>
                 <select id="occasion-filter" onchange="filterRestaurants('occasion', this.value)">
@@ -235,8 +260,14 @@
 
     <main class="main">
         <div class="section-title" id="list-title">All Restaurants</div>
+        
         <div class="restaurants-grid" id="restaurants-container">
-            <div class="restaurant-card" data-status="togo" data-region="bay-area" data-cuisine="asian-fusion" data-occasion="brunch">
+            <!-- Sweet Maple -->
+            <div class="restaurant-card" 
+                 data-status="togo" 
+                 data-region="bay-area" 
+                 data-cuisine="asian-fusion"
+                 data-occasion="brunch">
                 <div class="card-header">
                     <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80" alt="Sweet Maple">
                     <span class="status-badge status-togo">To Go</span>
@@ -255,6 +286,7 @@
                         <span class="meta-tag">Asian Fusion</span>
                         <span class="meta-tag">Brunch</span>
                     </div>
+
                     <div class="info-section">
                         <div class="info-grid">
                             <div class="info-item">
@@ -275,6 +307,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="dishes-section">
                         <div class="dishes-title">Must Try</div>
                         <div class="dishes-list">
@@ -284,6 +317,7 @@
                             <span class="dish-tag">Matcha Moffle</span>
                         </div>
                     </div>
+
                     <div class="reviews-section">
                         <div class="review">
                             <div class="review-header">
@@ -307,10 +341,12 @@
                             <div class="review-text">Super popular in downtown Palo Alto. American + Asian fusion. Huge portions, cozy decor.</div>
                         </div>
                     </div>
+
                     <div class="booking-section">
                         <div class="booking-label">Booking</div>
                         <div class="booking-info">Walk-in only. Arrive before 8:30am on weekends or wait 1-2 hours.</div>
                     </div>
+
                     <div class="photo-gallery">
                         <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400&q=80" alt="Dish 1">
                         <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400&q=80" alt="Dish 2">
@@ -319,38 +355,137 @@
                 </div>
             </div>
 
-            <div class="restaurant-card" data-status="togo" data-region="bay-area" data-cuisine="american" data-occasion="date">
+            <!-- Sushi Shin -->
+            <div class="restaurant-card" 
+                 data-status="togo" 
+                 data-region="bay-area" 
+                 data-cuisine="japanese"
+                 data-occasion="special">
                 <div class="card-header">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Scratch">
+                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&q=80" alt="Sushi Shin">
                     <span class="status-badge status-togo">To Go</span>
                     <div class="rating-box">
-                        <span class="rating-score">4.1</span>
-                        <span class="rating-count">2,179 reviews</span>
+                        <span class="rating-score">4.4</span>
+                        <span class="rating-count">219 reviews</span>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="card-title-row">
-                        <h3 class="restaurant-name">Scratch</h3>
-                        <span class="price-tag">$$$</span>
+                        <h3 class="restaurant-name">Sushi Shin</h3>
+                        <span class="price-tag">$$$$$</span>
                     </div>
                     <div class="meta-row">
-                        <span class="meta-tag">Mountain View</span>
-                        <span class="meta-tag">New American</span>
-                        <span class="meta-tag">Fine Dining</span>
+                        <span class="meta-tag">Redwood City</span>
+                        <span class="meta-tag">Omakase</span>
+                        <span class="meta-tag">Michelin</span>
                     </div>
+
                     <div class="info-section">
                         <div class="info-grid">
                             <div class="info-item">
                                 <span class="info-label">📍 Address</span>
-                                <span class="info-value">401 Castro St #100, Mountain View</span>
+                                <span class="info-value">312 Arguello St, Redwood City</span>
                             </div>
                             <div class="info-item">
                                 <span class="info-label">📞 Phone</span>
-                                <span class="info-value">(650) 237-3132</span>
+                                <span class="info-value">(650) 921-8809</span>
                             </div>
                             <div class="info-item">
                                 <span class="info-label">🎯 Occasion</span>
-                                <span class="info-value">Date, Business, Family</span>
+                                <span class="info-value">Special, Date, Celebration</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">👥 Capacity</span>
+                                <span class="info-value">2-4 people</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dishes-section">
+                        <div class="dishes-title">Must Try</div>
+                        <div class="dishes-list">
+                            <span class="dish-tag">Omakase Menu</span>
+                            <span class="dish-tag">Otoro</span>
+                            <span class="dish-tag">Uni</span>
+                            <span class="dish-tag">Lobster Spring Roll</span>
+                        </div>
+                    </div>
+
+                    <div class="reviews-section">
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">Lin Sun-Hoffman</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">Standout sushi experience! Intimate setting, elegant atmosphere. Omakase showcases seasonal seafood from Japan. Chef Jason Zhan is masterful.</div>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">David Famero</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">Unforgettable omakase! Impeccable cleanliness, quiet precision. Flavors honor Japan with subtle Shanghai touch. Michelin star quality.</div>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">Michael Lyons</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">Spectacular meal! Appetizer courses incredible - lobster spring roll and greeneye fish. Otoro and uni were amazing. Eel noodles blew my mind!</div>
+                        </div>
+                    </div>
+
+                    <div class="booking-section">
+                        <div class="booking-label">Booking</div>
+                        <div class="booking-info">Reservations highly recommended. Book via website or call. Intimate seating, limited availability.</div>
+                    </div>
+
+                    <div class="photo-gallery">
+                        <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=400&q=80" alt="Sushi 1">
+                        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=400&q=80" alt="Sushi 2">
+                        <img src="https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=400&q=80" alt="Sushi 3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ping's Bistro Cupertino -->
+            <div class="restaurant-card" 
+                 data-status="togo" 
+                 data-region="bay-area" 
+                 data-cuisine="yunnan"
+                 data-occasion="date">
+                <div class="card-header">
+                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" alt="Ping's Bistro">
+                    <span class="status-badge status-togo">To Go</span>
+                    <div class="rating-box">
+                        <span class="rating-score">4.4</span>
+                        <span class="rating-count">194 reviews</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3 class="restaurant-name">Ping's Bistro 留湘</h3>
+                        <span class="price-tag">$$$</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-tag">Cupertino</span>
+                        <span class="meta-tag">Yunnan</span>
+                        <span class="meta-tag">Dai Cuisine</span>
+                    </div>
+
+                    <div class="info-section">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">📍 Address</span>
+                                <span class="info-value">10700 S De Anza Blvd, Cupertino</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">📞 Phone</span>
+                                <span class="info-value">(408) 564-5134</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">🎯 Occasion</span>
+                                <span class="info-value">Date, Family, Friends</span>
                             </div>
                             <div class="info-item">
                                 <span class="info-label">👥 Capacity</span>
@@ -358,50 +493,241 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="dishes-section">
                         <div class="dishes-title">Must Try</div>
                         <div class="dishes-list">
-                            <span class="dish-tag">Pressure-Fried Chicken</span>
-                            <span class="dish-tag">Fresh Oysters</span>
-                            <span class="dish-tag">Filet Mignon</span>
-                            <span class="dish-tag">Chocolate Pot de Crème</span>
+                            <span class="dish-tag">Dai Style Pork Ribs</span>
+                            <span class="dish-tag">Grilled Fish with Lemongrass</span>
+                            <span class="dish-tag">Boletus Fried Rice</span>
+                            <span class="dish-tag">Wild Mushrooms with Pork</span>
                         </div>
                     </div>
+
                     <div class="reviews-section">
                         <div class="review">
                             <div class="review-header">
-                                <span class="reviewer">Grayson Valoria</span>
+                                <span class="reviewer">JP Figure</span>
                                 <span class="review-rating">★★★★★</span>
                             </div>
-                            <div class="review-text">Oysters were so fresh! Three sauces were all amazing. Filet Mignon cooked perfectly.</div>
+                            <div class="review-text">Completely blown away by vibrant flavors and beautiful presentation! Authentic Yunnan and Dai-style cuisine. Dai-style pork ribs and grilled lemongrass fish are must-orders.</div>
                         </div>
                         <div class="review">
                             <div class="review-header">
-                                <span class="reviewer">Adam Holler</span>
+                                <span class="reviewer">Chelsea</span>
                                 <span class="review-rating">★★★★★</span>
                             </div>
-                            <div class="review-text">Great choice for a relaxed evening. Energetic yet comfortable vibe. Patio dining is even better.</div>
+                            <div class="review-text">Every dish is CRAZY good! Braised wild mushrooms with pork has so much flavor. Osmanthus Honey Milk Jelly is the best dessert. Highly recommend coming right at 5pm opening!</div>
                         </div>
                         <div class="review">
                             <div class="review-header">
-                                <span class="reviewer">Steve Leonard</span>
+                                <span class="reviewer">Kevin Kruemp</span>
                                 <span class="review-rating">★★★★★</span>
                             </div>
-                            <div class="review-text">Great brunch variety. Chicken and waffles are excellent. Comfortable booths, big windows.</div>
+                            <div class="review-text">Excellent restaurant! Food is very authentic and atmosphere is bright and inviting. Options for adventurous eaters and those wanting something reliable.</div>
                         </div>
                     </div>
+
                     <div class="booking-section">
                         <div class="booking-label">Booking</div>
-                        <div class="booking-info">Reservations recommended via OpenTable. Brunch only on weekends (10am-9pm).</div>
+                        <div class="booking-info">Walk-in or call ahead. Very popular - arrive at 5pm opening or expect 1+ hour wait. 18% service charge applied.</div>
                     </div>
+
                     <div class="photo-gallery">
-                        <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&q=80" alt="Dish 1">
-                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Dish 2">
-                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="Dish 3">
+                        <img src="https://images.unsplash.com/photo-1541544744-375cfed75400?w=400&q=80" alt="Food 1">
+                        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=400&q=80" alt="Food 2">
+                        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb74b?w=400&q=80" alt="Food 3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- JiangNan Delicacy -->
+            <div class="restaurant-card" 
+                 data-status="togo" 
+                 data-region="bay-area" 
+                 data-cuisine="jiangsu"
+                 data-occasion="date">
+                <div class="card-header">
+                    <img src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?w=800&q=80" alt="JiangNan Delicacy">
+                    <span class="status-badge status-togo">To Go</span>
+                    <div class="rating-box">
+                        <span class="rating-score">4.1</span>
+                        <span class="rating-count">84 reviews</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3 class="restaurant-name">JiangNan Delicacy 江南雅厨</h3>
+                        <span class="price-tag">$$</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-tag">Milpitas</span>
+                        <span class="meta-tag">Jiangsu</span>
+                        <span class="meta-tag">Suzhou</span>
+                    </div>
+
+                    <div class="info-section">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">📍 Address</span>
+                                <span class="info-value">1750 N Milpitas Blvd, Milpitas</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">📞 Phone</span>
+                                <span class="info-value">(669) 263-6115</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">🎯 Occasion</span>
+                                <span class="info-value">Date, Family, Business</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">👥 Capacity</span>
+                                <span class="info-value">2-8 people</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dishes-section">
+                        <div class="dishes-title">Must Try</div>
+                        <div class="dishes-list">
+                            <span class="dish-tag">Sweet & Sour Fish</span>
+                            <span class="dish-tag">Sticky Rice Cake</span>
+                            <span class="dish-tag">Braised River Eel</span>
+                            <span class="dish-tag">Sweet Braised Lotus Roots</span>
+                        </div>
+                    </div>
+
+                    <div class="reviews-section">
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">Mia Mi</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">Viral on Red Note! Classy, delicate and elegant decoration. Artists playing traditional music. Sweet and sour fish, sticky rice cake, braised river eel all amazing!</div>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">Colleen Bei</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">Wonderful dining experience! Food absolutely delicious with authentic flavors and fresh ingredients. Service attentive and friendly. True taste of Suzhou cuisine!</div>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">H. J.</span>
+                                <span class="review-rating">★★★☆☆</span>
+                            </div>
+                            <div class="review-text">Nicely decorated, no wait. Dishes about what we expected. Food noticeably too sweet for our taste. Different from more commonly seen Sichuan style.</div>
+                        </div>
+                    </div>
+
+                    <div class="booking-section">
+                        <div class="booking-label">Booking</div>
+                        <div class="booking-info">Walk-in or call ahead. Reservations recommended for weekends. Live traditional music on select evenings.</div>
+                    </div>
+
+                    <div class="photo-gallery">
+                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&q=80" alt="Dish 1">
+                        <img src="https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=400&q=80" alt="Dish 2">
+                        <img src="https://images.unsplash.com/photo-1541544744-375cfed75400?w=400&q=80" alt="Dish 3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tai Er -->
+            <div class="restaurant-card" 
+                 data-status="togo" 
+                 data-region="bay-area" 
+                 data-cuisine="sichuan"
+                 data-occasion="casual">
+                <div class="card-header">
+                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=800&q=80" alt="Tai Er">
+                    <span class="status-badge status-togo">To Go</span>
+                    <div class="rating-box">
+                        <span class="rating-score">4.1</span>
+                        <span class="rating-count">140 reviews</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3 class="restaurant-name">Tai Er 太二酸菜鱼</h3>
+                        <span class="price-tag">$$</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-tag">San Mateo</span>
+                        <span class="meta-tag">Sichuan</span>
+                        <span class="meta-tag">Casual</span>
+                    </div>
+
+                    <div class="info-section">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">📍 Address</span>
+                                <span class="info-value">98 E 4th Ave, San Mateo</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">📞 Phone</span>
+                                <span class="info-value">(650) 398-2222</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">🎯 Occasion</span>
+                                <span class="info-value">Casual, Friends, Family</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">👥 Capacity</span>
+                                <span class="info-value">2-6 people</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dishes-section">
+                        <div class="dishes-title">Must Try</div>
+                        <div class="dishes-list">
+                            <span class="dish-tag">Signature Sauerkraut Fish</span>
+                            <span class="dish-tag">Spicy Chili Chicken</span>
+                            <span class="dish-tag">Spicy Wontons</span>
+                            <span class="dish-tag">Crispy Calamari</span>
+                        </div>
+                    </div>
+
+                    <div class="reviews-section">
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">Steven Lin</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">High-end Chinese restaurant with refined Sichuan dining! Sauerkraut Fish lives up to reputation - fish sliced with precision, deeply flavorful broth. Spice carefully calibrated.</div>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">Priscilla Tang</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">Favorites were sauerkraut fish - pillow-soft and super tender with perfect Sichuan peppercorn "ma". Chili chicken not greasy at all, very juicy. Great for groups!</div>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer">Christopher Chung</span>
+                                <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-text">New-modern Chinese-Sichuan restaurant, Instagramable and elevated. Signature Suancai fish is phenomenal - fragrant green Sichuan peppercorns, fermented vegetable provides depth.</div>
+                        </div>
+                    </div>
+
+                    <div class="booking-section">
+                        <div class="booking-label">Booking</div>
+                        <div class="booking-info">Reservations recommended to avoid long wait. Can book for next day. Gets crowded during dinner time.</div>
+                    </div>
+
+                    <div class="photo-gallery">
+                        <img src="https://images.unsplash.com/photo-1541544744-375cfed75400?w=400&q=80" alt="Fish 1">
+                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&q=80" alt="Fish 2">
+                        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=400&q=80" alt="Fish 3">
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="empty-state hidden" id="empty-state">
             <div class="empty-state-icon">🔍</div>
             <p>No restaurants match your filters</p>
@@ -409,24 +735,39 @@
     </main>
 
     <script>
-        let currentFilters = { status: 'all', region: 'all', cuisine: 'all', occasion: 'all' };
+        let currentFilters = {
+            status: 'all',
+            region: 'all',
+            cuisine: 'all',
+            occasion: 'all'
+        };
+
         function filterRestaurants(type, value) {
             currentFilters[type] = value;
+
             if (type === 'status') {
                 document.querySelectorAll('[data-filter]').forEach(btn => {
                     btn.classList.remove('active');
                     if (btn.dataset.filter === value) btn.classList.add('active');
                 });
-                const titles = { 'all': 'All Restaurants', 'tried': 'Tried Restaurants', 'togo': 'To Go List' };
+
+                const titles = {
+                    'all': 'All Restaurants',
+                    'tried': 'Tried Restaurants',
+                    'togo': 'To Go List'
+                };
                 document.getElementById('list-title').textContent = titles[value];
             }
+
             const cards = document.querySelectorAll('.restaurant-card');
             let visibleCount = 0;
+
             cards.forEach(card => {
                 const matchesStatus = currentFilters.status === 'all' || card.dataset.status === currentFilters.status;
                 const matchesRegion = currentFilters.region === 'all' || card.dataset.region === currentFilters.region;
                 const matchesCuisine = currentFilters.cuisine === 'all' || card.dataset.cuisine === currentFilters.cuisine;
                 const matchesOccasion = currentFilters.occasion === 'all' || card.dataset.occasion === currentFilters.occasion;
+
                 if (matchesStatus && matchesRegion && matchesCuisine && matchesOccasion) {
                     card.classList.remove('hidden');
                     visibleCount++;
@@ -434,20 +775,25 @@
                     card.classList.add('hidden');
                 }
             });
+
             document.getElementById('empty-state').classList.toggle('hidden', visibleCount > 0);
             updateStats();
         }
+
         function updateStats() {
             const visibleCards = document.querySelectorAll('.restaurant-card:not(.hidden)');
             let triedCount = 0, togoCount = 0;
+
             visibleCards.forEach(card => {
                 if (card.dataset.status === 'tried') triedCount++;
                 if (card.dataset.status === 'togo') togoCount++;
             });
+
             document.getElementById('total-count').textContent = visibleCards.length;
             document.getElementById('tried-count').textContent = triedCount;
             document.getElementById('togo-count').textContent = togoCount;
         }
+
         updateStats();
     </script>
 </body>
