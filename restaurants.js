@@ -162,7 +162,7 @@ const restaurantData = [
 {
     id: 7,
     name: "Acquerello",
-    location: "bay-area",
+    location: "sf",
     status: "togo",
     occasion: "special",
     cuisine: "italian",
@@ -187,7 +187,7 @@ const restaurantData = [
 {
     id: 8,
     name: "Foreign Cinema",
-    location: "bay-area",
+    location: "sf",
     status: "togo",
     occasion: "date",
     cuisine: "american",
@@ -236,7 +236,7 @@ const restaurantData = [
 {
     id: 10,
     name: "La Mar Cocina Peruana",
-    location: "bay-area",
+    location: "sf",
     status: "togo",
     occasion: "date",
     cuisine: "peruvian",
@@ -261,7 +261,7 @@ const restaurantData = [
 {
     id: 11,
     name: "Suppenküche",
-    location: "bay-area",
+    location: "sf",
     status: "togo",
     occasion: "casual",
     cuisine: "german",
@@ -311,7 +311,7 @@ const restaurantData = [
 {
     id: 13,
     name: "Tony's Pizza Napoletana",
-    location: "bay-area",
+    location: "sf",
     status: "togo",
     occasion: "casual",
     cuisine: "italian",
@@ -361,7 +361,7 @@ const restaurantData = [
 {
     id: 15,
     name: "R & G Lounge",
-    location: "bay-area",
+    location: "sf",
     status: "tried",
     occasion: "special",
     cuisine: "chinese",
@@ -388,7 +388,7 @@ const restaurantData = [
 {
     id: 16,
     name: "Sorrel",
-    location: "bay-area",
+    location: "sf",
     status: "tried",
     occasion: "special",
     cuisine: "italian",
@@ -624,7 +624,8 @@ restaurantData.push(
 }
 );
 
-// Michelin-starred restaurants (25-66)
+// Michelin-starred restaurants (25-66) - COMMENTED OUT until images are available
+/*
 restaurantData.push(
 // === 3-STAR MICHELIN ===
 {
@@ -1680,6 +1681,7 @@ restaurantData.push(
     michelin: 1
 }
 );
+*/
 
 // Export for use in main script
 window.restaurantData = restaurantData;

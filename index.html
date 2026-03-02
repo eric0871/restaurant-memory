@@ -110,12 +110,18 @@ select.cuisine-select:focus{border-color:var(--accent)}
 <button class="pill" data-status="tried">Tried</button>
 <select class="cuisine-select" id="locationFilter">
 <option value="all">All Locations</option>
-<option value="bay-area">Bay Area</option>
+<option value="bay-area">South Bay</option>
 <option value="napa">Napa</option>
 <option value="sf">San Francisco</option>
 <option value="new-york">New York</option>
 <option value="shanghai">Shanghai</option>
 <option value="los-angeles">Los Angeles</option>
+</select>
+<select class="cuisine-select" id="michelinFilter">
+<option value="all">All Stars</option>
+<option value="1">★ (1 star)</option>
+<option value="2">★★ (2 stars)</option>
+<option value="3">★★★ (3 stars)</option>
 </select>
 <select class="cuisine-select" id="cuisineFilter">
 <option value="all">All Cuisines</option>
@@ -160,6 +166,7 @@ let statusFilter = 'all';
 let cuisineFilter = 'all';
 let locationFilter = 'all';
 let occasionFilter = 'all';
+let michelinFilter = 'all';
 let searchQuery = '';
 
 // Initialize
@@ -195,6 +202,10 @@ function setupEventListeners() {
         occasionFilter = e.target.value;
         applyFilters();
     });
+    document.getElementById('michelinFilter').addEventListener('change', (e) => {
+        michelinFilter = e.target.value;
+        applyFilters();
+    });
     document.getElementById('searchInput').addEventListener('input', (e) => {
         searchQuery = e.target.value.toLowerCase();
         applyFilters();
@@ -216,8 +227,9 @@ function applyFilters() {
         const mc = cuisineFilter === 'all' || r.cuisine === cuisineFilter;
         const ml = locationFilter === 'all' || r.location === locationFilter;
         const mo = occasionFilter === 'all' || r.occasion === occasionFilter;
+        const mm = michelinFilter === 'all' || r.michelin === parseInt(michelinFilter);
         const mq = !searchQuery || r.name.toLowerCase().includes(searchQuery) || r.tags.some(t => t.toLowerCase().includes(searchQuery));
-        return ms && mc && ml && mo && mq;
+        return ms && mc && ml && mo && mm && mq;
     });
 
     // Sort
