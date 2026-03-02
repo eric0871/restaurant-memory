@@ -287,11 +287,12 @@ function createCard(r) {
             <div class="rev-text">${rv.text}</div>
         </div>
     `).join('');
-    const galleryHtml = r.gallery.map((g, i) => `<img src="${g}" alt="" loading="lazy">`).join('');
+    const galleryHtml = r.gallery.map((g, i) => `<img src="${g}" alt="" loading="lazy" onerror="this.src='images/placeholder.jpg'">`).join('');
+    const heroImage = r.heroImage || 'images/placeholder.jpg';
 
     card.innerHTML = `
         <div class="card-img">
-            <img src="${r.heroImage}" alt="${r.name}" loading="lazy">
+            <img src="${heroImage}" alt="${r.name}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
             ${michelinBadge}
             ${statusBadge}
             <div class="rating-pill"><span class="score">${r.rating}</span><span class="count">${r.reviewCount} reviews</span></div>
