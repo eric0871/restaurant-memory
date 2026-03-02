@@ -1683,4 +1683,5 @@ restaurantData.push(
 );
 
 // Export for use in main script
+*/
 window.restaurantData = restaurantData;
