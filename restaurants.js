@@ -625,7 +625,6 @@ restaurantData.push(
 );
 
 // Michelin-starred restaurants (25-66) - COMMENTED OUT until images are available
-/*
 restaurantData.push(
 // === 3-STAR MICHELIN ===
 {
@@ -1683,5 +1682,4 @@ restaurantData.push(
 );
 
 // Export for use in main script
-*/
 window.restaurantData = restaurantData;
