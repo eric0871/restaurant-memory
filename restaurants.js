@@ -1681,7 +1681,6 @@ restaurantData.push(
     michelin: 1
 }
 );
-*/
 
 // Export for use in main script
 window.restaurantData = restaurantData;
