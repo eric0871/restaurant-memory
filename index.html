@@ -16,42 +16,38 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
 
 /* HEADER */
 .hero{text-align:center;padding:60px 20px 40px}
-.hero h1{
-font-family:'Orbitron',sans-serif;font-size:clamp(36px,6vw,56px);font-weight:700;
-letter-spacing:6px;text-transform:uppercase;color:var(--text);
-text-shadow:0 0 20px rgba(0,229,255,0.5),0 0 60px rgba(0,229,255,0.15);
-}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(36px,6vw,56px);font-weight:700;letter-spacing:6px;text-transform:uppercase;color:var(--text);text-shadow:0 0 20px rgba(0,229,255,0.5),0 0 60px rgba(0,229,255,0.15)}
 
 /* TOOLBAR */
 .toolbar{max-width:1320px;margin:0 auto;padding:0 40px 32px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between}
 .filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.pill{padding:7px 18px;border:1px solid var(--border);border-radius:99px;background:var(--card);font-size:12px;
-font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;color:var(--text2)}
+.pill{padding:7px 18px;border:1px solid var(--border);border-radius:99px;background:var(--card);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;color:var(--text2)}
 .pill:hover{border-color:var(--accent)}
 .pill.active{background:var(--text);color:#fff;border-color:var(--text)}
-select.cuisine-select{padding:7px 14px;border:1px solid var(--border);border-radius:99px;background:var(--card);
-font-size:12px;font-family:'Inter',sans-serif;color:var(--text2);cursor:pointer;outline:none}
+select.cuisine-select{padding:7px 14px;border:1px solid var(--border);border-radius:99px;background:var(--card);font-size:12px;font-family:'Inter',sans-serif;color:var(--text2);cursor:pointer;outline:none}
 select.cuisine-select:focus{border-color:var(--accent)}
 .stats{font-size:12px;color:var(--text3);letter-spacing:.5px}
 .stats span{font-weight:600;color:var(--text)}
+.search-input{padding:7px 14px;border:1px solid var(--border);border-radius:99px;background:var(--card);font-size:12px;font-family:'Inter',sans-serif;color:var(--text);width:200px}
+.search-input:focus{outline:none;border-color:var(--accent)}
 
 /* GRID */
 .grid{max-width:1320px;margin:0 auto;padding:0 40px 60px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 
 /* CARD */
-.card{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border);
-box-shadow:var(--shadow);transition:box-shadow .3s,transform .3s;cursor:pointer}
+.card{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);transition:box-shadow .3s,transform .3s;cursor:pointer;display:flex;flex-direction:column}
 .card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
-.card-img{height:200px;overflow:hidden;position:relative}
+.card-img{height:200px;overflow:hidden;position:relative;flex-shrink:0}
 .card-img img{width:100%;height:100%;object-fit:cover;display:block}
-.badge{position:absolute;top:12px;right:12px;padding:4px 12px;border-radius:99px;font-size:10px;
-font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.badge{position:absolute;top:12px;right:12px;padding:4px 12px;border-radius:99px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .badge-togo{background:var(--card);color:var(--text2);border:1px solid var(--border)}
 .badge-tried{background:#00b894;color:#fff}
-.rating-pill{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
-padding:5px 12px;border-radius:8px;display:flex;align-items:center;gap:6px}
+.rating-pill{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);padding:5px 12px;border-radius:8px;display:flex;align-items:center;gap:6px}
 .rating-pill .score{font-size:16px;font-weight:600}
 .rating-pill .count{font-size:10px;color:var(--text3)}
+
+/* MICHELIN BADGE */
+.michelin-badge{position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700;display:flex;align-items:center;gap:4px;border:1.5px solid #00e5ff;box-shadow:0 0 8px rgba(0,229,255,0.4);background:#1a1a1a;color:#00e5ff;z-index:2}
 
 /* CARD SUMMARY */
 .card-summary{padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start}
@@ -60,9 +56,7 @@ padding:5px 12px;border-radius:8px;display:flex;align-items:center;gap:6px}
 .tag{font-size:11px;color:var(--text2);background:var(--bg);padding:3px 8px;border-radius:4px}
 .card-right{text-align:right;flex-shrink:0;margin-left:12px}
 .price{font-size:13px;color:var(--text3);font-weight:500}
-.expand-icon{display:inline-block;margin-top:8px;width:22px;height:22px;border-radius:50%;
-border:1px solid var(--border);text-align:center;line-height:20px;font-size:14px;color:var(--text3);
-transition:all .3s}
+.expand-icon{display:inline-block;margin-top:8px;width:22px;height:22px;border-radius:50%;border:1px solid var(--border);text-align:center;line-height:20px;font-size:14px;color:var(--text3);transition:all .3s}
 .card.open .expand-icon{transform:rotate(45deg);color:var(--accent);border-color:var(--accent)}
 
 /* EXPANDABLE DETAIL */
@@ -89,13 +83,11 @@ transition:all .3s}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
 .gallery img{width:100%;height:70px;object-fit:cover;border-radius:6px}
 
-/* MICHELIN BADGE */
-.michelin-badge{position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700;display:flex;align-items:center;gap:4px;border:1.5px solid #00e5ff;box-shadow:0 0 8px rgba(0,229,255,0.4)}
-.michelin-3star{background:#1a1a1a;color:#00e5ff}
-.michelin-2star{background:#1a1a1a;color:#00e5ff}
-.michelin-1star{background:#1a1a1a;color:#00e5ff}
-.michelin-bib{background:#1a1a1a;color:#00e5ff}
-.michelin-selected{background:#1a1a1a;color:#00e5ff}
+/* LOADING & PAGINATION */
+.loading{text-align:center;padding:40px;color:var(--text3)}
+.load-more{text-align:center;padding:20px}
+.load-more button{padding:12px 32px;border:1px solid var(--border);border-radius:99px;background:var(--card);font-size:13px;cursor:pointer;transition:all .2s}
+.load-more button:hover{border-color:var(--accent);background:var(--accent);color:#fff}
 
 /* EMPTY */
 .empty{text-align:center;padding:60px 20px;color:var(--text3);display:none}
@@ -103,8 +95,7 @@ transition:all .3s}
 
 /* RESPONSIVE */
 @media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr);padding:0 24px 40px}}
-@media(max-width:640px){.grid{grid-template-columns:1fr;padding:0 16px 32px}
-.toolbar{padding:0 16px 24px}.hero{padding:40px 16px 28px}.hero h1{letter-spacing:3px}}
+@media(max-width:640px){.grid{grid-template-columns:1fr;padding:0 16px 32px}.toolbar{padding:0 16px 24px}.hero{padding:40px 16px 28px}.hero h1{letter-spacing:3px}}
 .hidden{display:none!important}
 </style>
 </head>
@@ -121,6 +112,7 @@ transition:all .3s}
 <option value="all">All Locations</option>
 <option value="bay-area">Bay Area</option>
 <option value="napa">Napa</option>
+<option value="sf">San Francisco</option>
 <option value="new-york">New York</option>
 <option value="shanghai">Shanghai</option>
 <option value="los-angeles">Los Angeles</option>
@@ -146,872 +138,190 @@ transition:all .3s}
 <option value="business">Business</option>
 <option value="brunch">Brunch</option>
 </select>
+<input type="text" class="search-input" id="searchInput" placeholder="Search restaurants...">
 </div>
-<div class="stats"><span id="sTotal">24</span> total · <span id="sTried">0</span> tried · <span id="sTogo">15</span> to go</div>
-</div>
-
-<div class="grid" id="grid">
-
-<!-- 1. Sweet Maple -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="brunch" data-cuisine="asian-fusion">
-<div class="card-img">
-<img src="images/sweet-maple-1.jpg" alt="Sweet Maple" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.4</span><span class="count">940 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Sweet Maple</div><div class="card-tags"><span class="tag">Palo Alto</span><span class="tag">Asian Fusion</span><span class="tag">Brunch</span></div></div>
-<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">150 University Ave, Palo Alto</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 521-0764</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Brunch, Date, Friends</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Millionaire's Bacon</span><span class="dish">Chicken Croffle</span><span class="dish">Ube Latte</span><span class="dish">Matcha Moffle</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Riyakan Kapoor</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Ultimate brunch spot! Ube Latte is the star. French Toast is the best I've ever had.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Shubham Kamdi</span><span class="rev-stars">★★★★☆</span></div><div class="rev-text">High-energy modern brunch. Millionaire's Bacon is the main draw but pricey. Two people easily $100.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Hua Mao</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Super popular in downtown Palo Alto. American + Asian fusion. Huge portions, cozy decor.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in only. Arrive before 8:30am on weekends or wait 1-2 hours.</div></div>
-<div class="gallery"><img src="images/sweet-maple-2.jpg" alt="" loading="lazy"><img src="images/sweet-maple-3.jpg" alt="" loading="lazy"><img src="images/sweet-maple-4.jpg" alt="" loading="lazy"></div>
-</div></div>
+<div class="stats"><span id="sTotal">0</span> total · <span id="sTried">0</span> tried · <span id="sTogo">0</span> to go</div>
 </div>
 
-<!-- 2. Sushi Shin -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="special" data-cuisine="japanese">
-<div class="card-img">
-<img src="images/sushi-shin-1.jpg" alt="Sushi Shin" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.4</span><span class="count">219 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Sushi Shin</div><div class="card-tags"><span class="tag">Redwood City</span><span class="tag">Omakase</span><span class="tag">Michelin</span></div></div>
-<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">312 Arguello St, Redwood City</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 921-8809</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Celebration</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-4 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Omakase Menu</span><span class="dish">Otoro</span><span class="dish">Uni</span><span class="dish">Lobster Spring Roll</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Lin Sun-Hoffman</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Standout sushi experience! Intimate setting, elegant atmosphere. Chef Jason Zhan is masterful.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">David Famero</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Unforgettable omakase! Impeccable cleanliness, quiet precision. Michelin star quality.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Michael Lyons</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Spectacular meal! Lobster spring roll and greeneye fish. Otoro and uni were amazing.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations highly recommended. Book via website or call. Intimate seating, limited availability.</div></div>
-<div class="gallery"><img src="images/sushi-shin-2.jpg" alt="" loading="lazy"><img src="images/sushi-shin-3.jpg" alt="" loading="lazy"><img src="images/sushi-shin-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 3. Ping's Bistro -->
-<div class="card" data-location="bay-area" data-status="tried" data-occasion="date" data-cuisine="chinese" data-date="2025-01-12">
-<div class="card-img">
-<img src="images/pings-bistro-1.jpg" alt="Ping's Bistro" loading="lazy">
-<span class="badge badge-tried">Tried · 1/12</span>
-<div class="rating-pill"><span class="score">4.4</span><span class="count">194 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Ping's Bistro 留湘</div><div class="card-tags"><span class="tag">Cupertino</span><span class="tag">Yunnan</span><span class="tag">Dai Cuisine</span></div></div>
-<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">10700 S De Anza Blvd, Cupertino</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(408) 564-5134</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Date, Family, Friends</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Dai Style Pork Ribs</span><span class="dish">Grilled Fish with Lemongrass</span><span class="dish">Boletus Fried Rice</span><span class="dish">Wild Mushrooms with Pork</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">JP Figure</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Completely blown away by vibrant flavors! Authentic Yunnan and Dai-style cuisine.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Chelsea</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Every dish is CRAZY good! Osmanthus Honey Milk Jelly is the best dessert.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Kevin Kruemp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Excellent restaurant! Food is very authentic and atmosphere is bright and inviting.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call ahead. Arrive at 5pm opening or expect 1+ hour wait. 18% service charge.</div></div>
-<div class="gallery"><img src="images/pings-bistro-2.jpg" alt="" loading="lazy"><img src="images/pings-bistro-3.jpg" alt="" loading="lazy"><img src="images/pings-bistro-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 4. JiangNan Delicacy -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="date" data-cuisine="chinese">
-<div class="card-img">
-<img src="images/jiangnan-1.jpg" alt="JiangNan Delicacy" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.1</span><span class="count">84 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">JiangNan Delicacy 江南雅厨</div><div class="card-tags"><span class="tag">Milpitas</span><span class="tag">Jiangsu</span><span class="tag">Suzhou</span></div></div>
-<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">1750 N Milpitas Blvd, Milpitas</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(669) 263-6115</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Date, Family, Business</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Sweet &amp; Sour Fish</span><span class="dish">Sticky Rice Cake</span><span class="dish">Braised River Eel</span><span class="dish">Sweet Braised Lotus Roots</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Mia Mi</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Viral on Red Note! Classy, delicate decoration. Artists playing traditional music.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Colleen Bei</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Wonderful dining experience! True taste of Suzhou cuisine!</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">H. J.</span><span class="rev-stars">★★★☆☆</span></div><div class="rev-text">Nicely decorated, no wait. Food noticeably too sweet for our taste.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call. Reservations recommended weekends. Live traditional music select evenings.</div></div>
-<div class="gallery"><img src="images/jiangnan-2.jpg" alt="" loading="lazy"><img src="images/jiangnan-3.jpg" alt="" loading="lazy"><img src="images/jiangnan-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 5. Tai Er -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="casual" data-cuisine="chinese">
-<div class="card-img">
-<img src="images/tai-er-1.jpg" alt="Tai Er" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.1</span><span class="count">140 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Tai Er 太二酸菜鱼</div><div class="card-tags"><span class="tag">San Mateo</span><span class="tag">Sichuan</span><span class="tag">Casual</span></div></div>
-<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">98 E 4th Ave, San Mateo</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 398-2222</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Friends, Family</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Signature Sauerkraut Fish</span><span class="dish">Spicy Chili Chicken</span><span class="dish">Spicy Wontons</span><span class="dish">Crispy Calamari</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Steven Lin</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Sauerkraut Fish lives up to reputation - fish sliced with precision, deeply flavorful broth.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Priscilla Tang</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Pillow-soft fish with perfect Sichuan peppercorn "ma". Great for groups!</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Christopher Chung</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Instagramable and elevated. Signature Suancai fish is phenomenal.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Gets crowded during dinner time.</div></div>
-<div class="gallery"><img src="images/tai-er-2.jpg" alt="" loading="lazy"><img src="images/tai-er-3.jpg" alt="" loading="lazy"><img src="images/tai-er-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 6. Sushi Yoshizumi -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="special" data-cuisine="japanese">
-<div class="card-img">
-<img src="images/sushi-yoshizumi-1.jpg" alt="Sushi Yoshizumi" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.7</span><span class="count">198 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Sushi Yoshizumi</div><div class="card-tags"><span class="tag">San Mateo</span><span class="tag">Japanese</span><span class="tag">Omakase</span></div></div>
-<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">325 E 4th Ave, San Mateo</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 348-8126</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Omakase</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-4 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Edomae Omakase</span><span class="dish">Hokkaido Uni</span><span class="dish">Salt Water Eel</span><span class="dish">Squid</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Michelin Guide</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Cherished by expats. Chef Akira Yoshizumi perfected Edomae sushi style. Only 8 seats at the cypress bar.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">SF Chronicle</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Hokkaido uni is musky and bright; apricot-colored spoonful served atop vinegared rice wrapped in crisp seaweed.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations required. Only 8 seats. Book well in advance.</div></div>
-<div class="gallery"><img src="images/sushi-yoshizumi-2.jpg" alt="" loading="lazy"><img src="images/sushi-yoshizumi-3.jpg" alt="" loading="lazy"><img src="images/sushi-yoshizumi-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 7. Acquerello -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="special" data-cuisine="italian">
-<div class="card-img">
-<img src="images/acquerello-1.jpg" alt="Acquerello" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.6</span><span class="count">640 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Acquerello</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">Italian</span><span class="tag">Fine Dining</span></div></div>
-<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">1722 Sacramento St, SF</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 567-5432</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Anniversary</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Carrot &amp; Ginger Terrine</span><span class="dish">Handmade Pastas</span><span class="dish">Cheese Plate</span><span class="dish">Tasting Menu</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Michelin Guide</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Handmade pastas combine classic technique with personal style. Dishes arrive as visual masterpieces.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">TripAdvisor</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The class of San Francisco and the pinnacle of Italian fine dining in the bay.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations highly recommended. Tue-Sat dinner only.</div></div>
-<div class="gallery"><img src="images/acquerello-2.jpg" alt="" loading="lazy"><img src="images/acquerello-3.jpg" alt="" loading="lazy"><img src="images/acquerello-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 8. Foreign Cinema -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="date" data-cuisine="american">
-<div class="card-img">
-<img src="images/foreign-cinema-1.jpg" alt="Foreign Cinema" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.5</span><span class="count">3,292 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Foreign Cinema</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">American</span><span class="tag">Date Night</span></div></div>
-<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">2534 Mission St, SF</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 648-7600</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Date, Special, Unique</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Pork Chop</span><span class="dish">Fresh Oysters</span><span class="dish">Californian-Mediterranean</span><span class="dish">Weekend Brunch</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">The Infatuation</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Beyond watching movies - the food is just as memorable. Produce-heavy Californian dishes.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Outdoor courtyard projects films nightly.</div></div>
-<div class="gallery"><img src="images/foreign-cinema-2.jpg" alt="" loading="lazy"><img src="images/foreign-cinema-3.jpg" alt="" loading="lazy"><img src="images/foreign-cinema-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 9. I Shanghai Delight -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="casual" data-cuisine="chinese">
-<div class="card-img">
-<img src="images/i-shanghai-1.jpg" alt="I Shanghai Delight" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.4</span><span class="count">1,218 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">I Shanghai Delight 阿拉上海</div><div class="card-tags"><span class="tag">Fremont</span><span class="tag">Chinese</span><span class="tag">Casual</span></div></div>
-<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">6016 Stevenson Blvd, Fremont</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(510) 709-1196</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Family, Friends, Casual</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Xiao Long Bao</span><span class="dish">Soup Dumplings</span><span class="dish">Pan Fried Dumplings</span><span class="dish">Wonton Soup</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Most authentic soup dumplings. Every single dish was delicious!</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Customer</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">I grew up in Shanghai and found this the most authentic Shanghainese cuisine.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call ahead. Wed closed. Multiple Bay Area locations.</div></div>
-<div class="gallery"><img src="images/i-shanghai-2.jpg" alt="" loading="lazy"><img src="images/i-shanghai-3.jpg" alt="" loading="lazy"><img src="images/i-shanghai-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 10. La Mar -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="date" data-cuisine="peruvian">
-<div class="card-img">
-<img src="images/la-mar-1.jpg" alt="La Mar" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.5</span><span class="count">4,735 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">La Mar Cocina Peruana</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">Peruvian</span><span class="tag">Waterfront</span></div></div>
-<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">Pier 1½ The Embarcadero, SF</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 397-8880</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Date, Special, Waterfront</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Ceviche</span><span class="dish">Lomo Saltado</span><span class="dish">Arroz La Mar</span><span class="dish">Pisco Sour</span><span class="dish">Empanadas</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Condé Nast</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Arroz la mar with shrimp, clams, mussels, calamari, and arborio rice.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">TripAdvisor</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Fantastic fresh taro chips with dynamite green dipping sauce. Get the Pisco Sour!</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Waterfront at Pier 1½. Covered patio dining.</div></div>
-<div class="gallery"><img src="images/la-mar-2.jpg" alt="" loading="lazy"><img src="images/la-mar-3.jpg" alt="" loading="lazy"><img src="images/la-mar-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 11. Suppenküche -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="casual" data-cuisine="german">
-<div class="card-img">
-<img src="images/suppenkuche-1.jpg" alt="Suppenküche" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.5</span><span class="count">1,944 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Suppenküche</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">German</span><span class="tag">Casual</span></div></div>
-<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">525 Laguna St, SF (Hayes Valley)</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 252-9289</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Friends, Brunch</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Wiener Schnitzel</span><span class="dish">Brotwurst</span><span class="dish">Schweinebraten</span><span class="dish">Pretzel</span><span class="dish">German Beer</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">The Infatuation</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The best German food in town. Less "how fast can you chug a beer" than Leopold's.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Traditional Bavarian Wirthaus dining. Warm atmosphere, specialty beer selection. Est. 1993.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call ahead. Oktoberfest specials Sept 20 - Oct 5. Famous for 1-liter beer mugs.</div></div>
-<div class="gallery"><img src="images/suppenkuche-2.jpg" alt="" loading="lazy"><img src="images/suppenkuche-3.jpg" alt="" loading="lazy"><img src="images/suppenkuche-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 12. Shang Cafe -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="casual" data-cuisine="chinese">
-<div class="card-img">
-<img src="images/shang-cafe-1.jpg" alt="Shang Cafe" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.1</span><span class="count">553 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Shang Cafe</div><div class="card-tags"><span class="tag">San Jose</span><span class="tag">Chinese</span><span class="tag">Sichuan</span></div></div>
-<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">6154 Bollinger Rd, San Jose</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(408) 320-2876</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Friends, Family</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Spicy Fish Fillet</span><span class="dish">Mapo Tofu</span><span class="dish">Sichuan Chicken</span><span class="dish">Braised Pork Belly</span><span class="dish">Sichuan Cold Noodles</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Boiled Fish Fillet in Green Peppers Soup - relatively simple dishes but executed sooo well.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Reviewer</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Arguably one of the most authentic Sichuan spots in South Bay.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or call ahead. Wed closed. Lunch 11am-2pm, Dinner 5pm-8:15pm.</div></div>
-<div class="gallery"><img src="images/shang-cafe-2.jpg" alt="" loading="lazy"><img src="images/shang-cafe-3.jpg" alt="" loading="lazy"><img src="images/shang-cafe-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 13. Tony's Pizza -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="casual" data-cuisine="italian">
-<div class="card-img">
-<img src="images/tonys-pizza-1.jpg" alt="Tony's Pizza Napoletana" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.5</span><span class="count">9,858 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Tony's Pizza Napoletana</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">Italian</span><span class="tag">Pizza</span></div></div>
-<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">1570 Stockton St, SF (North Beach)</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 835-9888</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Family, Pizza Night</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Margherita</span><span class="dish">Neapolitan Pizza</span><span class="dish">Sicilian Pizza</span><span class="dish">New York Style</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">The Infatuation</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">13-time World Pizza Champion Tony Gemignani. Tony's is impressive.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Several styles: Neapolitan, Classic American, Sicilian, Pizza Romana, New York, Detroit and St. Louis.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Long lines expected. Join waitlist online. Daily 12pm-10pm.</div></div>
-<div class="gallery"><img src="images/tonys-pizza-2.jpg" alt="" loading="lazy"><img src="images/tonys-pizza-3.jpg" alt="" loading="lazy"><img src="images/tonys-pizza-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 14. Imperial Treasure -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="special" data-cuisine="chinese">
-<div class="card-img">
-<img src="images/imperial-treasure-1.jpg" alt="Imperial Treasure" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.1</span><span class="count">261 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Imperial Treasure</div><div class="card-tags"><span class="tag">Palo Alto</span><span class="tag">Chinese</span><span class="tag">Fine Dining</span></div></div>
-<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">151 California Ave, Palo Alto</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 656-9597</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Business, Family</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-10 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Peking Duck</span><span class="dish">Walnut Shrimp</span><span class="dish">Big Plate Chicken</span><span class="dish">Lion Head Meatballs</span><span class="dish">Szechuan Fish</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Yelp</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Traditional Roast Peking Duck. Thin, crispy skin with authentic preparation.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Website</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Michelin-Level Chinese in Palo Alto! Famous walnut shrimp and fiery Big Plate Chicken.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended for dinner. Perfect for business lunches or celebrations.</div></div>
-<div class="gallery"><img src="images/imperial-treasure-2.jpg" alt="" loading="lazy"><img src="images/imperial-treasure-3.jpg" alt="" loading="lazy"><img src="images/imperial-treasure-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 15. R & G Lounge -->
-<div class="card" data-location="bay-area" data-status="tried" data-occasion="special" data-cuisine="chinese" data-date="2025-02-19">
-<div class="card-img">
-<img src="images/r-and-g-lounge-1.jpg" alt="R & G Lounge" loading="lazy">
-<span class="badge badge-tried">Tried · 2/19</span>
-<div class="rating-pill"><span class="score">4.3</span><span class="count">5,373 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">R & G Lounge</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">Cantonese</span><span class="tag">Seafood</span></div></div>
-<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">631 Kearny St, San Francisco</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 982-7877</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Family, Friends, Special</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-12 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Salt &amp; Pepper Crab</span>
-<span class="dish">Peking Duck</span>
-<span class="dish">Garlic Steamed Lobster</span>
-<span class="dish">Soy Sauce Chicken</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Michelle L.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Best Cantonese food in Chinatown! The salt &amp; pepper crab is legendary. Perfect for family dinners.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">David K.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Huge portions, authentic flavors. Their Peking duck rivals restaurants in Hong Kong.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Jennifer W.</span><span class="rev-stars">★★★★☆</span></div><div class="rev-text">Busy basement dining room, but worth the wait. Garlic lobster was incredible.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-in or reservations recommended. Large groups welcome. Basement dining room seats hundreds.</div></div>
-<div class="gallery"><img src="images/r-and-g-lounge-2.jpg" alt="" loading="lazy"><img src="images/r-and-g-lounge-3.jpg" alt="" loading="lazy"><img src="images/r-and-g-lounge-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 16. Sorrel -->
-<div class="card" data-location="bay-area" data-status="tried" data-occasion="special" data-cuisine="italian" data-date="2025-02-15">
-<div class="card-img">
-<img src="images/sorrel-1.jpg" alt="Sorrel" loading="lazy">
-<span class="badge badge-tried">Tried · 2/15</span>
-<div class="rating-pill"><span class="score">4.0</span><span class="count">398 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Sorrel</div><div class="card-tags"><span class="tag">San Francisco</span><span class="tag">Italian</span><span class="tag">Michelin ★</span></div></div>
-<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">3228 Sacramento St, San Francisco</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(415) 525-3765</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Anniversary</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Handmade Pasta</span>
-<span class="dish">Miso Mustard King Salmon</span>
-<span class="dish">Squab with Black Garlic</span>
-<span class="dish">Sourdough Focaccia</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Michelle R.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Michelin star worthy! The handmade pasta and locally sourced ingredients shine. Intimate setting.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">James T.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Seasonal menu changes weekly. King salmon with miso mustard was perfectly executed. Excellent wine pairings.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Sarah L.</span><span class="rev-stars">★★★★☆</span></div><div class="rev-text">Chic minimalist space. The squab with black garlic and spring onion was exceptional. Pricey but memorable.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations required. Tasting menu available. Wed-Sun dinner only.</div></div>
-<div class="gallery"><img src="images/sorrel-2.jpg" alt="" loading="lazy"><img src="images/sorrel-3.jpg" alt="" loading="lazy"><img src="images/sorrel-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 17. The French Laundry -->
-<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="french">
-<div class="card-img">
-<img src="images/the-french-laundry-1.jpg" alt="The French Laundry" loading="lazy">
-<span class="michelin-badge michelin-3star">★★★</span>
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.8</span><span class="count">2,100 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">The French Laundry</div><div class="card-tags"><span class="tag">Yountville</span><span class="tag">French</span><span class="tag">Californian</span></div></div>
-<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">6640 Washington St, Yountville</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(707) 944-2380</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Anniversary, Celebration</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Chef's Tasting Menu</span>
-<span class="dish">Oysters and Pearls</span>
-<span class="dish">Macaroni and Cheese</span>
-<span class="dish">Coffee and Doughnuts</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Thomas K.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Life-changing experience. Every course is perfection. Worth every penny and the months-long wait.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Michelin Guide</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Exceptional cuisine, worth a special journey. Thomas Keller's iconic restaurant sets the standard.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Sarah M.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The service is impeccable. The garden vegetables are harvested daily. Pure culinary artistry.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations open 2 months in advance. Book at 10am PT exactly. $350+ per person.</div></div>
-<div class="gallery"><img src="images/the-french-laundry-2.jpg" alt="" loading="lazy"><img src="images/the-french-laundry-3.jpg" alt="" loading="lazy"><img src="images/the-french-laundry-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 18. Kenzo -->
-<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="japanese">
-<div class="card-img">
-<img src="images/kenzo-1.jpg" alt="Kenzo" loading="lazy">
-<span class="michelin-badge michelin-1star">★</span>
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.6</span><span class="count">380 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Kenzo</div><div class="card-tags"><span class="tag">Napa</span><span class="tag">Japanese</span><span class="tag">Kaiseki</span></div></div>
-<div class="card-right"><div class="price">$$$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">1339 Pearl St, Napa</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(707) 294-2049</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Omakase</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-4 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Kaiseki Menu</span>
-<span class="dish">Sashimi</span>
-<span class="dish">Wagyu</span>
-<span class="dish">Uni</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">David L.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Authentic Japanese kaiseki in Napa. Ingredients flown daily from Japan. Exceptional.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Michelle Guide</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">High quality cooking. Traditional techniques meet Napa Valley ingredients.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations required. Limited seating. Counter seating available.</div></div>
-<div class="gallery"><img src="images/kenzo-2.jpg" alt="" loading="lazy"><img src="images/kenzo-3.jpg" alt="" loading="lazy"><img src="images/kenzo-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 19. Auberge du Soleil -->
-<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="french">
-<div class="card-img">
-<img src="images/auberge-du-soleil-1.jpg" alt="Auberge du Soleil" loading="lazy">
-<span class="michelin-badge michelin-1star">★</span>
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.5</span><span class="count">850 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Auberge du Soleil</div><div class="card-tags"><span class="tag">Rutherford</span><span class="tag">French</span><span class="tag">View</span></div></div>
-<div class="card-right"><div class="price">$$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">180 Rutherford Hill Rd, Rutherford</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(800) 348-5406</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Anniversary</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Chef's Tasting Menu</span>
-<span class="dish">Mediterranean Octopus</span>
-<span class="dish">Lamb</span>
-<span class="dish">Chocolate Soufflé</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Jennifer K.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Stunning views of Napa Valley. Held Michelin star for 18 years. Unforgettable.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Robert M.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The terrace dining is magical at sunset. Mediterranean flavors shine.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Request terrace seating for views. Valet parking.</div></div>
-<div class="gallery"><img src="images/auberge-du-soleil-2.jpg" alt="" loading="lazy"><img src="images/auberge-du-soleil-3.jpg" alt="" loading="lazy"><img src="images/auberge-du-soleil-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 20. Auro -->
-<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="american">
-<div class="card-img">
-<img src="images/auro-1.jpg" alt="Auro" loading="lazy">
-<span class="michelin-badge michelin-1star">★</span>
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.4</span><span class="count">420 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Auro</div><div class="card-tags"><span class="tag">Calistoga</span><span class="tag">American</span><span class="tag">Contemporary</span></div></div>
-<div class="card-right"><div class="price">$$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">400 Silverado Trail N, Calistoga</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(707) 709-2160</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Wine Tasting</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Japanese Shima Aji</span>
-<span class="dish">Black Trumpet Mushroom Tetela</span>
-<span class="dish">Valencia Orange Sherbet</span>
-<span class="dish">Cinnamon Churros</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Lisa T.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Chef Rogelio Garcia is brilliant. James Beard finalist. Seven courses of perfection.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Michael R.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Wine pairings are exceptional. Over 475 labels. Monthly winery series dinners.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations required. Seven-course tasting menu. Wine pairings available.</div></div>
-<div class="gallery"><img src="images/auro-2.jpg" alt="" loading="lazy"><img src="images/auro-3.jpg" alt="" loading="lazy"><img src="images/auro-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 21. PRESS -->
-<div class="card" data-location="napa" data-status="togo" data-occasion="special" data-cuisine="american">
-<div class="card-img">
-<img src="images/press-1.jpg" alt="PRESS" loading="lazy">
-<span class="michelin-badge michelin-1star">★</span>
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.6</span><span class="count">680 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">PRESS</div><div class="card-tags"><span class="tag">St. Helena</span><span class="tag">American</span><span class="tag">Wine</span></div></div>
-<div class="card-right"><div class="price">$$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">587 St Helena Hwy, St Helena</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(707) 967-0550</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Special, Date, Wine Dinner</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Dry-Aged Ribeye</span>
-<span class="dish">Local Vegetables</span>
-<span class="dish">House-made Pasta</span>
-<span class="dish">Seasonal Dessert</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Wine Lover</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Largest Napa Valley wine collection in the world. 10,000 bottles. Grand Award winner.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">James P.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Multiple sommeliers on staff. Perfect pairings every time. Meat and pasta dishes shine.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended. Wine cellar tours available. Request sommelier table.</div></div>
-<div class="gallery"><img src="images/press-2.jpg" alt="" loading="lazy"><img src="images/press-3.jpg" alt="" loading="lazy"><img src="images/press-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 22. 10 Butchers -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="casual" data-cuisine="korean">
-<div class="card-img">
-<img src="images/10-butchers-1.jpg" alt="10 Butchers" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.5</span><span class="count">2,106 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">10 Butchers Korean BBQ</div><div class="card-tags"><span class="tag">Sunnyvale</span><span class="tag">Korean BBQ</span><span class="tag">Wagyu</span></div></div>
-<div class="card-right"><div class="price">$$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">595 E El Camino Real, Sunnyvale</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(408) 720-8889</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Friends, Family</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-8 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">10 Cuts of Wagyu Beef</span>
-<span class="dish">Prime Ribeye</span>
-<span class="dish">Marinated Short Rib</span>
-<span class="dish">Hydro Stewed Soups</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Jennifer K.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Best Korean BBQ in the Bay Area! Premium quality meat, beautiful modern interior. Worth every penny.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">David L.</span><span class="rev-stars">★★★★★</span></div><div class="review"><div class="rev-head"><span class="rev-name">David L.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The 10 different cuts of wagyu are incredible. Servers cook everything perfectly at the table.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Michelle R.</span><span class="rev-stars">★★★★☆</span></div><div class="rev-text">Upscale Korean BBQ experience. Great for groups. Make reservations on weekends.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Reservations recommended on weekends. Walk-ins welcome weekdays. Lunch and dinner service.</div></div>
-<div class="gallery"><img src="images/10-butchers-2.jpg" alt="" loading="lazy"><img src="images/10-butchers-3.jpg" alt="" loading="lazy"><img src="images/10-butchers-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 23. Nursel -->
-<div class="card" data-location="bay-area" data-status="togo" data-occasion="casual" data-cuisine="russian">
-<div class="card-img">
-<img src="images/nursel-1.jpg" alt="Nursel" loading="lazy">
-<span class="badge badge-togo">To Go</span>
-<div class="rating-pill"><span class="score">4.5</span><span class="count">303 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Nursel</div><div class="card-tags"><span class="tag">San Carlos</span><span class="tag">Central Asian</span><span class="tag">Russian</span></div></div>
-<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">601 Old County Rd, San Carlos</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(650) 445-4075</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Friends, Family</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Borsh</span>
-<span class="dish">Plov</span>
-<span class="dish">Manty</span>
-<span class="dish">Olivie Salad</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Jennifer L.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Best borsh and olivie in the Bay Area! Authentic Kyrgyzstani flavors. Cozy family atmosphere.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">David K.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The plov has incredible aroma and flavors. A hidden gem in San Carlos. Try the pastries too!</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Michelle R.</span><span class="rev-stars">★★★★☆</span></div><div class="rev-text">Unique Central Asian cuisine. Family-owned across from Caltrain. Great for a casual dinner.</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-ins welcome. Across from San Carlos Caltrain. Pastries available for takeout.</div></div>
-<div class="gallery"><img src="images/nursel-2.jpg" alt="" loading="lazy"><img src="images/nursel-3.jpg" alt="" loading="lazy"><img src="images/nursel-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-<!-- 24. Daeho Kalbi Jjim -->
-<div class="card" data-location="bay-area" data-status="tried" data-occasion="casual" data-cuisine="korean" data-date="2025-03-01">
-<div class="card-img">
-<img src="images/daeho-milpitas-1.jpg" alt="Daeho Kalbi Jjim" loading="lazy">
-<span class="badge badge-tried">Tried · 3/1</span>
-<div class="rating-pill"><span class="score">4.5</span><span class="count">1,493 reviews</span></div>
-</div>
-<div class="card-summary">
-<div><div class="card-name">Daeho Kalbi Jjim & Beef Soup</div><div class="card-tags"><span class="tag">Milpitas</span><span class="tag">Korean</span><span class="tag">Beef</span></div></div>
-<div class="card-right"><div class="price">$$</div><div class="expand-icon">+</div></div>
-</div>
-<div class="card-detail"><div class="detail-inner">
-<div class="info-grid">
-<div><div class="info-label">📍 Address</div><div class="info-val">217 W Calaveras Blvd, Milpitas</div></div>
-<div><div class="info-label">📞 Phone</div><div class="info-val">(408) 770-3778</div></div>
-<div><div class="info-label">🎯 Occasion</div><div class="info-val">Casual, Family, Friends</div></div>
-<div><div class="info-label">👥 Capacity</div><div class="info-val">2-6 people</div></div>
-</div>
-<div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">
-<span class="dish">Kalbi Jjim (Braised Beef Ribs)</span>
-<span class="dish">Kalbi Tang (Beef Rib Soup)</span>
-<span class="dish">Seolleong Tang</span>
-<span class="dish">Beef Tartare</span>
-</div></div>
-<div class="reviews">
-<div class="review"><div class="rev-head"><span class="rev-name">Jennifer K.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">The kalbi jjim is incredible! Tender, flavorful, huge portions. Perfect for sharing.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">David L.</span><span class="rev-stars">★★★★★</span></div><div class="rev-text">Best Korean beef soup in the Bay Area. The beef rib soup is comforting and rich.</div></div>
-<div class="review"><div class="rev-head"><span class="rev-name">Michelle R.</span><span class="rev-stars">★★★★☆</span></div><div class="rev-text">Efficient setup, laid-back ambiance. Come hungry - portions are huge!</div></div>
-</div>
-<div class="booking"><div class="booking-label">Booking</div><div class="booking-val">Walk-ins welcome. Expect wait during peak hours. Multiple locations in SF, Milpitas, San Mateo.</div></div>
-<div class="gallery"><img src="images/daeho-milpitas-2.jpg" alt="" loading="lazy"><img src="images/daeho-milpitas-3.jpg" alt="" loading="lazy"><img src="images/daeho-milpitas-4.jpg" alt="" loading="lazy"></div>
-</div></div>
-</div>
-
-</div>
-
+<div class="grid" id="grid"></div>
+<div class="load-more" id="loadMore"><button onclick="loadMore()">Load More</button></div>
 <div class="empty" id="empty">🔍 No restaurants match your filters</div>
 
+<script src="restaurants.js"></script>
 <script>
-const grid=document.getElementById('grid');
-const cards=grid.querySelectorAll('.card');
-const pills=document.querySelectorAll('.pill');
-const cuisineSelect=document.getElementById('cuisineFilter');
-const locationSelect=document.getElementById('locationFilter');
-const occasionSelect=document.getElementById('occasionFilter');
-let statusFilter='all',cuisineFilter='all',locationFilter='all',occasionFilter='all';
+// State
+let allRestaurants = [];
+let filteredRestaurants = [];
+let displayedCount = 0;
+const BATCH_SIZE = 24;
 
-// Toggle expand
-grid.addEventListener('click',e=>{
-const card=e.target.closest('.card');
-if(!card)return;
-// Don't toggle if clicking a link
-if(e.target.tagName==='A')return;
-card.classList.toggle('open');
-});
+// Filters
+let statusFilter = 'all';
+let cuisineFilter = 'all';
+let locationFilter = 'all';
+let occasionFilter = 'all';
+let searchQuery = '';
 
-// Status pills
-pills.forEach(p=>p.addEventListener('click',()=>{
-pills.forEach(b=>b.classList.remove('active'));
-p.classList.add('active');
-statusFilter=p.dataset.status;
-applyFilters();
-}));
-
-// Cuisine
-cuisineSelect.addEventListener('change',()=>{
-cuisineFilter=cuisineSelect.value;
-applyFilters();
-});
-
-// Location
-locationSelect.addEventListener('change',()=>{
-locationFilter=locationSelect.value;
-applyFilters();
-});
-
-// Occasion
-occasionSelect.addEventListener('change',()=>{
-occasionFilter=occasionSelect.value;
-applyFilters();
-});
-
-function applyFilters(){
-let tried=0,togo=0;
-let visibleCards=[];
-
-// First pass: determine visibility
-const allCards=Array.from(cards);
-allCards.forEach(c=>{
-const ms=statusFilter==='all'||c.dataset.status===statusFilter;
-const mc=cuisineFilter==='all'||c.dataset.cuisine===cuisineFilter;
-const ml=locationFilter==='all'||c.dataset.location===locationFilter;
-const mo=occasionFilter==='all'||c.dataset.occasion===occasionFilter;
-const show=ms&&mc&&ml&&mo;
-c.classList.toggle('hidden',!show);
-if(show){
-visibleCards.push(c);
-if(c.dataset.status==='tried')tried++;
-if(c.dataset.status==='togo')togo++;
-}
-});
-
-// Sort visible cards
-if(statusFilter==='tried'){
-// Sort by date descending (newest first)
-visibleCards.sort((a,b)=>{
-const dateA=a.dataset.date||'2000-01-01';
-const dateB=b.dataset.date||'2000-01-01';
-return dateB.localeCompare(dateA);
-});
-}else if(statusFilter==='all'||statusFilter==='togo'){
-// Random shuffle
-for(let i=visibleCards.length-1;i>0;i--){
-const j=Math.floor(Math.random()*(i+1));
-[visibleCards[i],visibleCards[j]]=[visibleCards[j],visibleCards[i]];
-}
+// Initialize
+function init() {
+    allRestaurants = window.restaurantData || [];
+    applyFilters();
+    setupEventListeners();
+    updateStats();
 }
 
-// Reorder in DOM
-const grid=document.getElementById('grid');
-visibleCards.forEach(c=>grid.appendChild(c));
+// Setup event listeners
+function setupEventListeners() {
+    // Status pills
+    document.querySelectorAll('.pill').forEach(p => {
+        p.addEventListener('click', () => {
+            document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+            p.classList.add('active');
+            statusFilter = p.dataset.status;
+            applyFilters();
+        });
+    });
+
+    // Filters
+    document.getElementById('cuisineFilter').addEventListener('change', (e) => {
+        cuisineFilter = e.target.value;
+        applyFilters();
+    });
+    document.getElementById('locationFilter').addEventListener('change', (e) => {
+        locationFilter = e.target.value;
+        applyFilters();
+    });
+    document.getElementById('occasionFilter').addEventListener('change', (e) => {
+        occasionFilter = e.target.value;
+        applyFilters();
+    });
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase();
+        applyFilters();
+    });
+
+    // Card expand
+    document.getElementById('grid').addEventListener('click', (e) => {
+        const card = e.target.closest('.card');
+        if (!card) return;
+        if (e.target.tagName === 'A') return;
+        card.classList.toggle('open');
+    });
+}
+
+// Apply filters
+function applyFilters() {
+    filteredRestaurants = allRestaurants.filter(r => {
+        const ms = statusFilter === 'all' || r.status === statusFilter;
+        const mc = cuisineFilter === 'all' || r.cuisine === cuisineFilter;
+        const ml = locationFilter === 'all' || r.location === locationFilter;
+        const mo = occasionFilter === 'all' || r.occasion === occasionFilter;
+        const mq = !searchQuery || r.name.toLowerCase().includes(searchQuery) || r.tags.some(t => t.toLowerCase().includes(searchQuery));
+        return ms && mc && ml && mo && mq;
+    });
+
+    // Sort
+    if (statusFilter === 'tried') {
+        filteredRestaurants.sort((a, b) => (b.date || '2000-01-01').localeCompare(a.date || '2000-01-01'));
+    } else {
+        // Random shuffle for variety
+        for (let i = filteredRestaurants.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [filteredRestaurants[i], filteredRestaurants[j]] = [filteredRestaurants[j], filteredRestaurants[i]];
+        }
+    }
+
+    displayedCount = 0;
+    document.getElementById('grid').innerHTML = '';
+    loadMore();
+    updateStats();
+}
+
+// Load more cards
+function loadMore() {
+    const grid = document.getElementById('grid');
+    const toAdd = filteredRestaurants.slice(displayedCount, displayedCount + BATCH_SIZE);
+    
+    toAdd.forEach(r => {
+        grid.appendChild(createCard(r));
+    });
+    
+    displayedCount += toAdd.length;
+    
+    // Show/hide load more button
+    document.getElementById('loadMore').style.display = displayedCount >= filteredRestaurants.length ? 'none' : 'block';
+    document.getElementById('empty').classList.toggle('show', filteredRestaurants.length === 0);
+}
+
+// Create card HTML
+function createCard(r) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.status = r.status;
+    card.dataset.cuisine = r.cuisine;
+    card.dataset.location = r.location;
+    card.dataset.occasion = r.occasion;
+    if (r.date) card.dataset.date = r.date;
+
+    const michelinBadge = r.michelin ? `<span class="michelin-badge">${'★'.repeat(r.michelin)}</span>` : '';
+    const statusBadge = r.status === 'tried' 
+        ? `<span class="badge badge-tried">Tried${r.date ? ' · ' + formatDate(r.date) : ''}</span>`
+        : `<span class="badge badge-togo">To Go</span>`;
+    const tagsHtml = r.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    const dishesHtml = r.dishes.map(d => `<span class="dish">${d}</span>`).join('');
+    const reviewsHtml = r.reviews.map(rv => `
+        <div class="review">
+            <div class="rev-head"><span class="rev-name">${rv.name}</span><span class="rev-stars">${'★'.repeat(rv.rating)}</span></div>
+            <div class="rev-text">${rv.text}</div>
+        </div>
+    `).join('');
+    const galleryHtml = r.gallery.map((g, i) => `<img src="${g}" alt="" loading="lazy">`).join('');
+
+    card.innerHTML = `
+        <div class="card-img">
+            <img src="${r.heroImage}" alt="${r.name}" loading="lazy">
+            ${michelinBadge}
+            ${statusBadge}
+            <div class="rating-pill"><span class="score">${r.rating}</span><span class="count">${r.reviewCount} reviews</span></div>
+        </div>
+        <div class="card-summary">
+            <div><div class="card-name">${r.name}</div><div class="card-tags">${tagsHtml}</div></div>
+            <div class="card-right"><div class="price">${r.price}</div><div class="expand-icon">+</div></div>
+        </div>
+        <div class="card-detail">
+            <div class="detail-inner">
+                <div class="info-grid">
+                    <div><div class="info-label">📍 Address</div><div class="info-val">${r.address}</div></div>
+                    <div><div class="info-label">📞 Phone</div><div class="info-val">${r.phone}</div></div>
+                    <div><div class="info-label">🎯 Occasion</div><div class="info-val">${r.occasionLabel}</div></div>
+                    <div><div class="info-label">👥 Capacity</div><div class="info-val">${r.capacity}</div></div>
+                </div>
+                <div class="dishes"><div class="dishes-title">Must Try</div><div class="dishes-list">${dishesHtml}</div></div>
+                <div class="reviews">${reviewsHtml}</div>
+                <div class="booking"><div class="booking-label">Booking</div><div class="booking-val">${r.booking}</div></div>
+                <div class="gallery">${galleryHtml}</div>
+            </div>
+        </div>
+    `;
+    return card;
+}
+
+// Format date
+function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    return `${d.getMonth() + 1}/${d.getDate()}`;
+}
 
 // Update stats
-document.getElementById('sTotal').textContent=visibleCards.length;
-document.getElementById('sTried').textContent=tried;
-document.getElementById('sTogo').textContent=togo;
-document.getElementById('empty').classList.toggle('show',visibleCards.length===0);
+function updateStats() {
+    const tried = allRestaurants.filter(r => r.status === 'tried').length;
+    document.getElementById('sTotal').textContent = filteredRestaurants.length;
+    document.getElementById('sTried').textContent = tried;
+    document.getElementById('sTogo').textContent = allRestaurants.length - tried;
 }
-applyFilters();
+
+// Initialize on load
+window.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
