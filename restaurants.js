@@ -1678,6 +1678,33 @@ restaurantData.push(
     heroImage: "images/wakuriya-1.jpg",
     gallery: ["images/wakuriya-2.jpg", "images/wakuriya-3.jpg", "images/wakuriya-4.jpg"],
     michelin: 1
+},
+{
+    id: 67,
+    name: "GIWA",
+    location: "bay-area",
+    status: "tried",
+    occasion: "brunch",
+    cuisine: "korean",
+    price: "$$$",
+    rating: 4.6,
+    reviewCount: 1141,
+    tags: ["Santa Clara", "Korean Fusion", "Brunch"],
+    address: "1494 Halford Ave, Santa Clara, CA 95051",
+    phone: "(669) 279-7922",
+    occasionLabel: "Brunch, Date, Friends",
+    capacity: "2-6 people",
+    dishes: ["Creamy Uni Pasta", "Golden Chicken & Croffle", "US Wagyu Steak", "Crème Brûlée French Toast", "Lemon Garlic Lobster Pasta"],
+    booking: "Walk-in or reservations. Open daily 8:30am-10:30pm. Gets busy for brunch — arrive early on weekends.",
+    reviews: [
+        {name: "Yelp", rating: 5, text: "Beautiful interior with cozy pink tones and floral accents. Uni pasta is incredible!"},
+        {name: "The Infatuation", rating: 4, text: "California-meets-Korean brunch. The croffle and donkatsu are standouts. Attached flower shop is a nice touch."},
+        {name: "Google", rating: 5, text: "Fresh seasonal ingredients, friendly staff. Wagyu steak and lobster pasta are must-tries."}
+    ],
+    heroImage: "images/placeholder.jpg",
+    gallery: [],
+    michelin: 0,
+    date: "2026-04-04"
 }
 );
 
