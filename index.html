@@ -108,41 +108,17 @@ select.cuisine-select:focus{border-color:var(--accent)}
 <button class="pill active" data-status="all">All</button>
 <button class="pill" data-status="togo">To Go</button>
 <button class="pill" data-status="tried">Tried</button>
-<select class="cuisine-select" id="locationFilter">
-<option value="all">All Locations</option>
-<option value="bay-area">South Bay</option>
-<option value="napa">Napa</option>
-<option value="sf">San Francisco</option>
-<option value="new-york">New York</option>
-<option value="shanghai">Shanghai</option>
-<option value="los-angeles">Los Angeles</option>
-</select>
-<select class="cuisine-select" id="michelinFilter">
-<option value="all">All Stars</option>
-<option value="1">★ (1 star)</option>
-<option value="2">★★ (2 stars)</option>
-<option value="3">★★★ (3 stars)</option>
-</select>
-<select class="cuisine-select" id="cuisineFilter">
-<option value="all">All Cuisines</option>
-<option value="american">American</option>
-<option value="asian-fusion">Asian Fusion</option>
-<option value="chinese">Chinese</option>
-<option value="french">French</option>
-<option value="german">German</option>
-<option value="italian">Italian</option>
-<option value="japanese">Japanese</option>
-<option value="korean">Korean</option>
-<option value="peruvian">Peruvian</option>
-<option value="russian">Russian</option>
-</select>
-<select class="cuisine-select" id="occasionFilter">
-<option value="all">All Occasions</option>
-<option value="date">Date Night</option>
-<option value="casual">Casual</option>
-<option value="special">Special</option>
-<option value="business">Business</option>
-<option value="brunch">Brunch</option>
+<select class="cuisine-select" id="locationFilter"></select>
+<select class="cuisine-select" id="michelinFilter"></select>
+<select class="cuisine-select" id="cuisineFilter"></select>
+<select class="cuisine-select" id="occasionFilter"></select>
+<select class="cuisine-select" id="sortFilter">
+<option value="default">Sort: Default</option>
+<option value="rating">Sort: Rating ↓</option>
+<option value="name">Sort: Name A-Z</option>
+<option value="price-low">Sort: Price ↑</option>
+<option value="price-high">Sort: Price ↓</option>
+<option value="reviews">Sort: Reviews ↓</option>
 </select>
 <input type="text" class="search-input" id="searchInput" placeholder="Search restaurants...">
 </div>
@@ -167,11 +143,53 @@ let cuisineFilter = 'all';
 let locationFilter = 'all';
 let occasionFilter = 'all';
 let michelinFilter = 'all';
+let sortMode = 'default';
 let searchQuery = '';
+
+// Display labels for filter values
+const locationLabels = {
+    'bay-area': 'Bay Area', 'sf': 'San Francisco', 'napa': 'Napa / Sonoma',
+    'new-york': 'New York', 'shanghai': 'Shanghai', 'los-angeles': 'Los Angeles'
+};
+const occasionLabels = {
+    'date': 'Date Night', 'casual': 'Casual', 'special': 'Special',
+    'business': 'Business', 'brunch': 'Brunch'
+};
+
+// Build dynamic filter options from data
+function populateFilters() {
+    const data = allRestaurants;
+
+    // Location
+    const locations = [...new Set(data.map(r => r.location))].sort();
+    const locSel = document.getElementById('locationFilter');
+    locSel.innerHTML = '<option value="all">All Locations</option>' +
+        locations.map(l => `<option value="${l}">${locationLabels[l] || l}</option>`).join('');
+
+    // Cuisine
+    const cuisines = [...new Set(data.map(r => r.cuisine))].sort();
+    const cuiSel = document.getElementById('cuisineFilter');
+    cuiSel.innerHTML = '<option value="all">All Cuisines</option>' +
+        cuisines.map(c => `<option value="${c}">${c.charAt(0).toUpperCase() + c.slice(1).replace('-', ' ')}</option>`).join('');
+
+    // Occasion
+    const occasions = [...new Set(data.map(r => r.occasion))].sort();
+    const occSel = document.getElementById('occasionFilter');
+    occSel.innerHTML = '<option value="all">All Occasions</option>' +
+        occasions.map(o => `<option value="${o}">${occasionLabels[o] || o.charAt(0).toUpperCase() + o.slice(1)}</option>`).join('');
+
+    // Michelin
+    const stars = [...new Set(data.map(r => r.michelin))].sort((a,b) => a - b);
+    const micSel = document.getElementById('michelinFilter');
+    micSel.innerHTML = '<option value="all">All Stars</option>' +
+        '<option value="0">No Star</option>' +
+        stars.filter(s => s > 0).map(s => `<option value="${s}">${'★'.repeat(s)} (${s} star${s>1?'s':''})</option>`).join('');
+}
 
 // Initialize
 function init() {
     allRestaurants = window.restaurantData || [];
+    populateFilters();
     applyFilters();
     setupEventListeners();
     updateStats();
@@ -206,6 +224,10 @@ function setupEventListeners() {
         michelinFilter = e.target.value;
         applyFilters();
     });
+    document.getElementById('sortFilter').addEventListener('change', (e) => {
+        sortMode = e.target.value;
+        applyFilters();
+    });
     document.getElementById('searchInput').addEventListener('input', (e) => {
         searchQuery = e.target.value.toLowerCase();
         applyFilters();
@@ -228,12 +250,24 @@ function applyFilters() {
         const ml = locationFilter === 'all' || r.location === locationFilter;
         const mo = occasionFilter === 'all' || r.occasion === occasionFilter;
         const mm = michelinFilter === 'all' || r.michelin === parseInt(michelinFilter);
-        const mq = !searchQuery || r.name.toLowerCase().includes(searchQuery) || r.tags.some(t => t.toLowerCase().includes(searchQuery));
+        const mq = !searchQuery || [r.name, r.address, r.cuisine, r.occasionLabel, ...r.tags, ...r.dishes]
+            .some(s => s && s.toLowerCase().includes(searchQuery));
         return ms && mc && ml && mo && mm && mq;
     });
 
     // Sort
-    if (statusFilter === 'tried') {
+    const priceToNum = p => (p || '').length;
+    if (sortMode === 'rating') {
+        filteredRestaurants.sort((a, b) => b.rating - a.rating);
+    } else if (sortMode === 'name') {
+        filteredRestaurants.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortMode === 'price-low') {
+        filteredRestaurants.sort((a, b) => priceToNum(a.price) - priceToNum(b.price));
+    } else if (sortMode === 'price-high') {
+        filteredRestaurants.sort((a, b) => priceToNum(b.price) - priceToNum(a.price));
+    } else if (sortMode === 'reviews') {
+        filteredRestaurants.sort((a, b) => b.reviewCount - a.reviewCount);
+    } else if (statusFilter === 'tried') {
         filteredRestaurants.sort((a, b) => (b.date || '2000-01-01').localeCompare(a.date || '2000-01-01'));
     } else {
         // Random shuffle for variety
